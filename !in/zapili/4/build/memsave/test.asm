@@ -8,9 +8,11 @@
 	ld (hl), %01000111
 	ldir
 
-1   ei : halt
-    ld de, #4000
-	ld a,1 : out (#fe),a
+1   	ei 
+	halt
+	halt
+	halt
+    	ld de, #4000
 	call	player
 	xor a : out (#fe),a
 	jp	1b
