@@ -1,181 +1,193 @@
+	ld a, 208
+	ld (#4526), a
+	ld a, 2
+	ld hl, #4263
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
+	ld (#4083), a
+	ld (#4143), a
+	ld (#41c2), a
+	ld (#42a3), a
+	ld (#43a3), a
+	ld (#45a2), a
+	ld (#4683), a
+	ld (#4783), a
+	ld (#47a3), a
+	ld a, 82
+	ld (#4063), a
+	ld a, 3
+	ld hl, #44e3
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
+	ld (#4163), a
+	ld (#42e3), a
+	ld (#47c3), a
+	ld (#4803), a
+	ld (#499a), a
+	ld (#4f5b), a
 	xor a
-	ld hl, #4352
-	ld (hl), a
-	inc h
-	ld (hl), a
-	inc h
-	ld (hl), a
-	ld d,a
-	ld e,a
-	ld (#4633), de
-	ld (#4737), de
-	ld (#53ac), de
-	ld (#54aa), de
-	ld (#56a3), de
-	ld (#578b), de
-	ld (#4159), a
-	ld (#4258), a
-	ld (#437f), a
-	ld (#4553), a
-	ld (#4631), a
-	ld (#477f), a
-	ld (#50c3), a
-	ld (#51a0), a
-	ld (#55aa), a
-	ld (#5680), a
-	ld a, 16
-	ld (#406e), a
-	ld (#4257), a
-	ld (#4632), a
-	ld (#465f), a
+	ld (#4182), a
+	ld (#4382), a
+	ld (#4562), a
+	ld (#4582), a
+	ld (#4782), a
+	ld (#4863), a
+	ld (#49fb), a
+	ld (#4bdb), a
+	ld (#4ddb), a
+	ld (#4fbb), a
+	ld (#509d), a
+	ld (#51dc), a
+	ld (#52db), a
+	ld (#539d), a
+	ld (#57ba), a
 	ld a, 4
-	ld (#472b), a
-	ld a, 69
-	ld (#472c), a
-	ld a, 119
-	ld (#4655), a
-	ld (#472d), a
-	ld (#51a5), a
-	ld a, 254
-	ld (#472e), a
-	ld a, 234
-	ld (#4154), a
-	ld (#472f), a
-	ld a, 175
-	ld (#4730), a
-	ld a, 187
-	ld (#4733), a
-	ld a, 170
-	ld (#4150), a
-	ld (#4734), a
-	ld (#57a6), a
-	ld a, 34
-	ld (#4736), a
-	ld (#57a3), a
-	ld a, 255
-	ld d,a
-	ld e,a
-	ld (#404b), de
-	ld (#57b3), de
-	ld (#50ac), a
-	ld a, 221
-	ld d,a
-	ld e,a
-	ld (#50a8), de
-	ld (#4054), a
-	ld (#50d2), a
-	ld a, 213
-	ld (#4055), a
-	ld (#50a5), a
-	ld a, 85
-	ld hl, #50a2
+	ld hl, #42a2
 	ld (hl), a
-	inc hl
+	inc h
 	ld (hl), a
-	inc hl
+	inc h
 	ld (hl), a
-	ld d,a
-	ld e,a
-	ld (#50cf), de
-	ld (#56b0), de
-	ld (#4056), a
-	ld (#4251), a
-	ld (#4657), a
-	ld (#4659), a
-	ld a, 8
-	ld (#414e), a
-	ld (#55ab), a
-	ld a, 138
-	ld (#414f), a
-	ld a, 238
-	ld d,a
-	ld e,a
-	ld (#4151), de
-	ld a, 136
-	ld d,a
-	ld e,a
-	ld (#4155), de
-	ld (#55ac), de
-	ld a, 128
-	ld d,a
-	ld e,a
-	ld (#4157), de
-	ld a, 1
-	ld (#4250), a
-	ld (#436e), a
-	ld (#5490), a
-	ld (#54a1), a
-	ld a, 117
-	ld (#4656), a
-	ld a, 253
-	ld (#475b), a
-	ld a, 157
-	ld (#475d), a
-	ld a, 127
-	ld (#475e), a
-	ld (#51a6), a
-	ld a, 30
-	ld (#4071), a
-	ld a, 28
-	ld (#416e), a
-	ld (#5290), a
+	ld hl, #4dc2
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
+	ld (#4082), a
+	ld (#40a2), a
+	ld (#4482), a
+	ld (#47a2), a
+	ld (#48e2), a
+	ld (#49e2), a
+	ld (#4bc2), a
+	inc a
+	ld (#4822), a
+	ld (#4a82), a
+	ld (#4c02), a
+	ld (#4e22), a
+	ld (#4e62), a
+	ld a, 32
+	ld (#483d), a
+	ld (#49fd), a
+	ld (#4b3d), a
+	ld (#4e1d), a
+	ld (#4f1d), a
+	ld (#51da), a
 	ld a, 7
-	ld (#426e), a
-	ld (#476f), a
-	ld (#5390), a
-	ld a, 192
-	ld (#436f), a
-	ld (#5491), a
+	ld (#487b), a
+	ld (#48a2), a
+	ld (#4923), a
+	ld (#4b84), a
+	ld (#4c82), a
+	ld (#4d43), a
+	ld (#4e82), a
+	ld (#4f03), a
 	ld a, 96
-	ld (#446f), a
-	ld a, 124
-	ld (#456f), a
-	ld a, 14
-	ld (#466f), a
-	ld a, 29
-	ld (#518f), a
-	ld a, 112
-	ld (#5190), a
-	ld (#5691), a
-	ld a, 240
-	ld (#538f), a
-	ld a, 224
-	ld (#5591), a
-	ld a, 24
-	ld (#5791), a
-	ld a, 5
-	ld (#50a0), a
-	ld a, 245
-	ld (#50a1), a
-	ld a, 223
-	ld (#50ab), a
-	ld a, 125
-	ld (#51a1), a
-	ld a, 68
-	ld d,a
-	ld e,a
-	ld (#51a2), de
-	ld (#50c6), a
+	ld hl, #4c3d
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
+	ld (#485d), a
+	ld (#493d), a
+	ld (#495d), a
+	ld (#49dd), a
+	ld (#4a3d), a
+	ld (#4bfd), a
+	ld (#4c7b), a
+	ld (#4f84), a
+	ld (#4ffd), a
+	ld (#521d), a
+	ld a, 23
+	ld (#4943), a
+	ld (#4c22), a
+	ld a, 6
+	ld (#48c2), a
+	ld (#49c2), a
+	ld (#4ba2), a
+	ld (#4c84), a
+	ld (#4cc2), a
+	ld (#4da2), a
+	ld (#4f22), a
+	ld (#4f82), a
 	ld a, 71
-	ld (#51a4), a
-	ld a, 20
-	ld (#52a1), a
-	ld (#56a2), a
-	ld a, 17
-	ld (#56a5), a
-	ld a, 21
-	ld (#56a6), a
-	ld a, 186
-	ld (#57a7), a
-	ld a, 191
-	ld (#57a8), a
+	ld (#4a43), a
+	ld a, 112
+	ld (#487d), a
+	ld (#4a7d), a
+	ld (#4b7b), a
+	ld (#4c5d), a
+	ld (#4e5d), a
+	ld a, 28
+	ld (#497b), a
 	ld a, 64
+	ld hl, #533c
+	ld (hl), a
+	inc h
+	ld (hl), a
+	inc h
+	ld (hl), a
 	ld d,a
 	ld e,a
-	ld (#50c4), de
-	ld (#50d4), a
-	ld a, 93
-	ld (#50d1), a
-	ld a, 84
-	ld (#50d3), a
+	ld (#503c), de
+	ld (#48a4), a
+	ld (#4a63), a
+	ld (#505d), a
+	ld (#515c), a
+	ld (#521c), a
+	ld (#545d), a
+	ld (#549c), a
+	ld (#561d), a
+	ld a, 24
+	ld (#4a7b), a
+	ld (#4d84), a
+	ld a, 21
+	ld (#4c62), a
+	ld a, 1
+	ld (#4984), a
+	ld (#4a84), a
+	ld (#4d7a), a
+	ld (#52d9), a
+	ld a, 128
+	ld (#4a85), a
+	ld (#4d7b), a
+	ld a, 48
+	ld (#4e84), a
+	ld a, 224
+	ld (#49bd), a
+	ld a, 194
+	ld (#49dc), a
+	ld (#4bbc), a
+	ld (#4bdc), a
+	ld a, 210
+	ld (#4dbc), a
+	ld a, 193
+	ld (#4ebc), a
+	ld a, 192
+	ld (#49fc), a
+	ld (#4ddc), a
+	ld (#4fbc), a
+	ld (#561c), a
+	ld a, 65
+	ld (#4cfc), a
+	ld (#4edc), a
+	ld a, 80
+	ld (#52bc), a
+	ld (#543d), a
+	ld a, 68
+	ld (#50bc), a
+	ld a, 120
+	ld (#51bc), a
 	ret

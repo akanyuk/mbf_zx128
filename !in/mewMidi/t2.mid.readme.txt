@@ -1,8 +1,0 @@
-t2.mide.1.txt
-ruby /home/marinov/src/autosiril/autosiril.rb "t2.mid" 4me,3p,3m 8 6 12 0 64 2 6
-
-t2.mide.2.txt
-ruby /home/marinov/src/autosiril/autosiril.rb "t2.mid" 4me,3d,3m 8 6 12 0 64 2 2
-
-t2.mide.3.txt
-ruby /home/marinov/src/autosiril/autosiril.rb "t2.mid" 4me,3du,4du 8 6 12 0 64 2 10

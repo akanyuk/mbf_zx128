@@ -8,11 +8,17 @@
 	ld (hl), %01000111
 	ldir
 
-1   ei : halt
-    ld de, #4000
-	ld a,1 : out (#fe),a
-	call	player
 	xor a : out (#fe),a
+
+1   	ei 
+	halt
+	halt
+	halt
+	halt
+	halt
+	ld de, #4000
+	call	player
+
 	jp	1b
 
 player	module memsave
