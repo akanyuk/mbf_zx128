@@ -17,6 +17,7 @@ all: build
 build: $(PARTS:%=build/%.bin.zx0) ## Default: build project
 	@printf "\033[32mBuilding '$(PROJECT_NAME)'\033[0m\n"
 
+	rm -f build/$(PROJECT_NAME)*.sna
 	rm -f build/*.trd
 	rm -f build/*.c
 	
