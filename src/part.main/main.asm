@@ -2,8 +2,8 @@
 
 loop	
 
-	halt
-	halt
+	; halt
+	; halt
 	halt
     	ld de, #4000
 	call zapili4.start
