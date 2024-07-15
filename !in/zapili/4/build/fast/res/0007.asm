@@ -201,8 +201,6 @@
 	ld (hl), a
 	inc hl
 	ld (hl), a
-	ld (#51ac), de
-	ld (#51cc), de
 	ld (#51d6), de
 	ld (#51f6), de
 	ld hl, #5316
@@ -216,7 +214,6 @@
 	inc hl
 	ld (hl), a
 	ld (#5337), de
-	ld (#53ac), de
 	ld (#53b5), de
 	ld hl, #53d5
 	ld (hl), a
@@ -244,7 +241,6 @@
 	ld (hl), a
 	inc hl
 	ld (hl), a
-	ld (#55ac), de
 	ld (#55b5), de
 	ld hl, #55d5
 	ld (hl), a
@@ -266,7 +262,6 @@
 	ld (hl), a
 	inc hl
 	ld (hl), a
-	ld (#578c), de
 	ld (#57d6), de
 	ld (#410e), a
 	ld (#4137), a
@@ -580,7 +575,6 @@
 	ld (#4db7), a
 	ld a, 8
 	ld (#49b0), a
-	ld (#5134), a
 	ld (#537d), a
 	ld (#539f), a
 	ld a, 144
@@ -588,6 +582,7 @@
 	ld a, 10
 	ld (#4bb7), a
 	ld (#4fd7), a
+	ld (#5134), a
 	ld a, 238
 	ld (#4bb8), a
 	ld a, 42

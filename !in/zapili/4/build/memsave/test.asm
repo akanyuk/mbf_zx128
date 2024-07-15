@@ -9,9 +9,10 @@
 	ldir
 
 1   	ei 
+;	halt
+;	halt
 	halt
-	halt
-	halt
+	ld a, 1 : out (#fe),a
     	ld de, #4000
 	call	player
 	xor a : out (#fe),a

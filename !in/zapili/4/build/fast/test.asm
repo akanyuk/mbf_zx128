@@ -10,9 +10,11 @@
 	xor a : out (#fe), a
 	ei
 
-1	call fast.DisplayFrame
+1	ld a, 1 : out (#fe), a
+	call fast.DisplayFrame
 	call fast.NextFrame
 	halt
+	xor a : out (#fe), a
 	jr 1b
 
 DATA	module fast
