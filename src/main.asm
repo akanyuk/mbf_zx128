@@ -1,7 +1,7 @@
 	device zxspectrum128
 	page 0
 
-	;define _MUSIC_ 
+	define _MUSIC_ 
 	define _DEBUG_ 
 
 	define P_TRACK 1 ; track and player here
@@ -14,10 +14,9 @@ page0s	module lib
 	di : ld sp, page0s
 	xor a : out (#fe), a 
 
-	ld a,#be, i,a, hl,interr, (#beff),hl : im 2 : ei
+	ld a,#5c : ld i,a : ld hl,interr : ld (#5cff),hl : im 2 : ei
 
 	call musicStart
-	ld hl, 0 : ld (INTS_COUNTER), hl
 
 	call partMain
 
