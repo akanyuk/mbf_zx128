@@ -1,6 +1,15 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 
-	call jswTest
+	ld a, 2 : out (#fe), a 
+	
+	ld a, 6
+	ld d, #40
+	call jswWalkRight
+
+	ld a, 3
+	ld d, #50
+	call jswWalkRight
+
 	ld a, 1 : out (#fe), a 
 	di : halt
 

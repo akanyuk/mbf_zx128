@@ -2,7 +2,7 @@
 	page 0
 
 	; define _MUSIC_ 
-	define _DEBUG_ 
+	; define _DEBUG_ 
 
 	define P_TRACK 1 ; track and player here
 	
