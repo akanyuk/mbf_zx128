@@ -25,6 +25,33 @@ jswWalkRight	ld (jswHalt + 1), a
 
 	jr 1b
 
+	; d - hight screen address
+	; a - pause between frames
+jswWalkLeft	ld (jswHalt + 1), a
+	ld a, 31
+1	
+	ld hl, JSW_DATA1M
+	call jswSprite
+	dec a : cp -6 : ret z
+	call jswHalt
+
+	ld hl, JSW_DATA2M
+	call jswSprite
+	dec a : cp -6 : ret z
+	call jswHalt
+
+	ld hl, JSW_DATA3M
+	call jswSprite
+	dec a : cp -6 : ret z
+	call jswHalt
+
+	ld hl, JSW_DATA2M
+	call jswSprite
+	dec a : cp -6 : ret z
+	call jswHalt
+
+	jr 1b
+
 jswHalt	ld b, 1 : halt : djnz $-1 : ret
 
 	; a  - x pos
@@ -84,6 +111,13 @@ JSW_DATA1	db 00, 00, 00, 00, 00, 00, 00, 00
 	db 03, 04, 04, 07, 01, 01, 10, 07
 	db 00, 00, 00, 00, 00, 00, 00, 00
 
+JSW_DATA1M	db 00, 00, 00, 00, 00, 00, 00, 00
+	db 02, 05, 05, 06, 01, 01, 09, 00
+	db 01, 05, 01, 01, 03, 13, 01, 01
+	db 03, 04, 03, 07, 01, 01, 10, 00
+	db 00, 00, 00, 00, 00, 00, 00, 00
+	db 00, 00, 00, 00, 00, 00, 00, 00
+
 JSW_DATA2	db 00, 00, 00, 00, 00, 00, 00, 00
 	db 00, 00, 00, 00, 00, 02, 00, 00
 	db 02, 05, 02, 06, 01, 01, 12, 01
@@ -91,12 +125,26 @@ JSW_DATA2	db 00, 00, 00, 00, 00, 00, 00, 00
 	db 03, 04, 04, 07, 01, 05, 11, 01
 	db 00, 00, 00, 00, 00, 03, 00, 07
 
+JSW_DATA2M	db 00, 00, 00, 00, 00, 02, 00, 06
+	db 02, 05, 05, 06, 01, 04, 12, 01
+	db 01, 05, 01, 01, 01, 12, 05, 13
+	db 03, 04, 03, 07, 01, 01, 11, 01
+	db 00, 00, 00, 00, 00, 03, 00, 00
+	db 00, 00, 00, 00, 00, 00, 00, 00
+	
 JSW_DATA3	db 00, 00, 00, 00, 00, 00, 00, 00
 	db 00, 00, 00, 00, 06, 01, 00, 02
 	db 02, 05, 02, 06, 01, 05, 12, 11
 	db 01, 04, 01, 01, 01, 01, 04, 00
 	db 03, 04, 04, 07, 01, 04, 01, 02
 	db 00, 00, 00, 00, 07, 01, 06, 04
+
+JSW_DATA3M	db 00, 00, 00, 00, 06, 01, 07, 05
+	db 02, 05, 05, 06, 01, 05, 01, 03
+	db 01, 05, 01, 01, 01, 01, 05, 00
+	db 03, 04, 03, 07, 01, 04, 11, 12
+	db 00, 00, 00, 00, 07, 01, 00, 03
+	db 00, 00, 00, 00, 00, 00, 00, 00
 
 	; 0
 JSW_SPRITES	db %00000000
@@ -227,3 +275,13 @@ JSW_SPRITES	db %00000000
 	db %11111111
 	db %11111111
 	db %11111111
+
+	; 13
+	db %11110000
+	db %11110000
+	db %11110000
+	db %11110000
+	db %00001111
+	db %00001111
+	db %00001111
+	db %00001111

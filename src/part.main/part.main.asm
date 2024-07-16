@@ -1,41 +1,49 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 
-	ld a, 2 : out (#fe), a 
-	
-	ld a, 6
+	ld b, 20 : halt : djnz $-1
+
+	ld a, 4
 	ld d, #40
 	call jswWalkRight
 
+	ld b, 40 : halt : djnz $-1
+
 	ld a, 3
+	ld d, #48
+	call jswWalkLeft
+
+	ld b, 40 : halt : djnz $-1
+
+	ld a, 50 : ld (zap4WithDelay + 1), a
+	ld hl, zap4WithDelay
+	call interrStart
+
+	ld a, 2
 	ld d, #50
 	call jswWalkRight
 
-	ld a, 1 : out (#fe), a 
-	di : halt
+	call interrStop
 
-	ld bc, #2008
+	ld bc, #1010
 	call z4Iteration
 
 loop2
 	halt
-    	ld de, #4000
 	call zapili4.start
 
 	halt
-    	ld de, #4000
 	call zapili4.start
 
 	call randomNoise
 	jr loop2
 
 z4Iteration	ld a, c
-1	call zapili4.start + 3
+1	call zapili4.start + 6
 	push af
 	push bc
 	ld b, 14
 3	push bc
 	halt
-    	ld de, #4000
 	call zapili4.start
 	pop bc
 	djnz 3b
@@ -72,9 +80,15 @@ rl1	call rnd16
 	ldir
 	ret
 
+zap4WithDelay	ld a, 10 
+	or a : jp z, zapili4.start
+	dec a : ld (zap4WithDelay + 1), a
+	ret
+
 	include "common.asm"
 	include "jsw.asm"
 
 	module zapili4
-start	include "zapili4/player.asm"
+start	ld de, #4000
+	include "zapili4/player.asm"
 	endmodule
