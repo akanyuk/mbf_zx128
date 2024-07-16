@@ -1,6 +1,7 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 
 	call jswTest
+	ld a, 1 : out (#fe), a 
 	di : halt
 
 	ld bc, #2008

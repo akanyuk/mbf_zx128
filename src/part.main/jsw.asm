@@ -1,21 +1,20 @@
 
-jswTest         ld a, 7
-	ld de, #4000 - 8
-1	push af
-	
+jswTest         ld a, 0
+	ld d, #40
+1	
 	ld hl, JSW_DATA1
 	call jswSprite
-	inc de
+	inc a : cp 26 : ret z
 	dup 8 : halt : edup
 
 	ld hl, JSW_DATA2
 	call jswSprite
-	inc de
+	inc a : cp 26 : ret z
 	dup 8 : halt : edup
 
 	ld hl, JSW_DATA3
 	call jswSprite
-	inc de
+	inc a : cp 26 : ret z
 	dup 8 : halt : edup
 
 	ld hl, JSW_DATA2
@@ -23,10 +22,14 @@ jswTest         ld a, 7
 	inc de
 	dup 8 : halt : edup
 
-	pop af : dec a : jr nz, 1b
-	ret
+	jr 1b
 
-jswSprite	push de
+	; a  - x pos
+	; d  - screen high addr
+	; hl - sprite addr
+jswSprite	push af 
+	ld e, a
+	push de
 	ld a, 8
 1	push af
 	push de
@@ -38,6 +41,7 @@ jswSprite	push de
 	ld a, e : add #20 : ld e, a
 	pop af : dec a : jr nz, 1b
 	pop de
+	pop af
 	ret
 
 ; Print one char with ROM font
