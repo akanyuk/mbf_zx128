@@ -16,6 +16,8 @@ page0s	module lib
 
 	ld a,#5c : ld i,a : ld hl,interr : ld (#5cff),hl : im 2 : ei
 
+	xor a : call lib.SetPage
+	
 	call musicStart
 
 	call partMain
@@ -82,7 +84,7 @@ INTS_COUNTER	equ $+1
 
 page0e	display /d, '[page 0] free: ', #ffff - $, ' (', $, ')'	
 
-partMain	include "part.main/main.asm"
+partMain	include "part.main/part.main.asm"
 
 	define _page1 : page 1 : org #c000
 page1s	

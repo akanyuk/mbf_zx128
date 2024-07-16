@@ -1,5 +1,7 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 
+	call jswTest
+	di : halt
 
 	ld bc, #2008
 	call z4Iteration
@@ -61,6 +63,7 @@ rl1	call rnd16
 	ret
 
 	include "common.asm"
+	include "jsw.asm"
 
 	module zapili4
 start	include "zapili4/player.asm"
