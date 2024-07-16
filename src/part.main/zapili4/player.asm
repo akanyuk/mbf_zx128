@@ -1,14 +1,18 @@
+        jp play
+        ; reset frames
+        ld de, FRAME_0000
+        jr nextFrame
 play	; DE = starting screen address (#4000, #c000, etc...)
-        ld	hl,FRAME_0000
+        ld	hl, FRAME_0000
         ld	a,h : sub high FRAME_END : or l : sub low FRAME_END
         jr	nz,1f
-        ld	hl,FRAME_0000
-1	ld	c,(hl)  :  inc hl	; Screen shift
-        ld	b,(hl)  :  inc hl
+        ld	hl, FRAME_0000
+1	ld	c,(hl) : inc hl	; Screen shift
+        ld	b,(hl) : inc hl
         ex	de,hl
         add	hl,bc
         ld	b,0
-cycle	ld	a,(de)  :  inc de
+cycle	ld	a,(de) : inc de
         ld	c,a
         add	a
         jr	nc,2f

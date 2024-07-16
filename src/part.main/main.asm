@@ -1,28 +1,43 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 
 
-	ld b, 255
-loop1	push bc
+	ld bc, #2008
+	call z4Iteration
+
+loop2
+	halt
+    	ld de, #4000
+	call zapili4.start
+
+	halt
+    	ld de, #4000
+	call zapili4.start
+
+	call randomNoise
+	jr loop2
+
+z4Iteration	ld a, c
+1	call zapili4.start + 3
+	push af
+	push bc
+	ld b, 14
+3	push bc
 	halt
     	ld de, #4000
 	call zapili4.start
 	pop bc
-	djnz loop1
-loop2
+	djnz 3b
+	
+	pop bc
+	push bc
+	halt : djnz $-1
+	pop bc
 
-	halt
-    	ld de, #4000
-	call zapili4.start
+	pop af
+	dec a : jr nz, 1b
+	ret
 
-	halt
-    	ld de, #4000
-	call zapili4.start
-
-	call rl0
-	jr loop2
-
-rl0  
-	ld b, #40
+randomNoise	ld b, #40
 	call rl1
 
 	ld b, #48
@@ -30,8 +45,7 @@ rl0
 
 	ld b, #50
 
-rl1
-	call rnd16
+rl1	call rnd16
 	ld a, h : and %00000011
 	rla
 	or b
@@ -46,28 +60,7 @@ rl1
 	ldir
 	ret
 
-;----------------------------------------
-; in:  none
-; out: HL = random 16bit value
-;----------------------------------------
-rnd16
-.sd 	equ  $+1
-	ld   de, 1234
-	ld   a, d
-	ld   h, e
-	ld   l, 253
-	or   a
-	sbc  hl, de
-	sbc  a, 0
-	sbc  hl, de
-	ld   d, 0
-	sbc  a, d
-	ld   e, a
-	sbc  hl, de
-	jr   nc, .st
-	inc  hl
-.st 	ld  (.sd), hl
-    	ret
+	include "common.asm"
 
 	module zapili4
 start	include "zapili4/player.asm"
