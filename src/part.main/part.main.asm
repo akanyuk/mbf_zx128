@@ -1,5 +1,7 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 
+;	jp .skip
+
 	ld b, 20 : halt : djnz $-1
 
 	ld a, 4
@@ -24,9 +26,21 @@
 
 	call interrStop
 
-	ld bc, #1010
+	ld bc, #0808
 	call z4Iteration
+.skip	
+	call partCubo + 3
+	ld hl, partCubo
+	call interrStart
 
+	ld b, 255
+1	push bc
+	call zapili4.start
+	halt 
+	pop bc
+	djnz 1b
+
+	call interrStop
 loop2
 	halt
 	call zapili4.start

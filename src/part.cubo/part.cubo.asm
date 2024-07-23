@@ -93,7 +93,7 @@ DRAW_EDGES 	ex af, af'
 	ld d, (hl)
 	inc hl
 	ld e, (hl)
-	ld hl, 97*256 + 127	; x*y
+	ld hl, 65*256 + 159	; x*y
 	push hl	;->
 	add hl, de
 	ex de, hl
@@ -117,7 +117,7 @@ DRAW_EDGES 	ex af, af'
 	; hl:	x1, y1
 	; de:	x2, y2
 	; Coordinates start from top left corner
-LINE	ld ixl, 3	; line "density"
+LINE	ld ixl, 4	; line "density"
 R_LINE 	ld a, l
 	add a, e
 	rra
@@ -247,13 +247,13 @@ KUBOC_DECRUNCH
 	dec a : jr nz, 1b
 
 	; выставляем адреса
-	ld de, #405a
+	ld de, #4898
 	ld hl, KUBOC1 + 8
 	ld a, #08
 
 1	push af
 	push de,hl
-	ld a, 19
+	ld a, 12
 	ld bc, 12
 2	ex af, af'
 	ld (hl), e : inc hl : ld (hl), d
@@ -279,7 +279,7 @@ KUBOC_DECRUNCH
 
 KUBOC_TPL	ld (#0000),sp
 	ld hl, #0000
-	dup 19
+	dup 12
 	ld sp, #0000
 	dup 10 : push hl : edup
 	edup
@@ -403,6 +403,6 @@ PLOTTAB 	ds 4*256
 SINUSTAB	ds 256
 SqrTab	ds 512
 PEAKS_TMP 	ds NO_PEAKS*3
-ALPHA	db	0	
-BETA	db	0
+ALPHA	db 0	
+BETA	db 0
 KUBOC1	ds KUBOC_LEN * 8

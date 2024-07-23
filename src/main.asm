@@ -85,6 +85,7 @@ INTS_COUNTER	equ $+1
 page0e	display /d, '[page 0] free: ', #ffff - $, ' (', $, ')'	
 
 partMain	include "part.main/part.main.asm"
+partCubo	include "part.cubo/part.cubo.asm"
 
 	define _page1 : page 1 : org #c000
 page1s	
