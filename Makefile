@@ -47,7 +47,7 @@ build/%.bin: clean-%
 	sjasmplus --fullpath --color=off \
 		-DSNA_FILENAME=\"$(patsubst %.bin,%,$@)-$(NAME_SUFFIX).sna\" \
 		-DBIN_FILENAME=\"$@\" \
-		$(patsubst build/%.bin,%,$@)/main.asm
+		src/$(patsubst build/%.bin,%,$@)/main.asm
 
 	cp --force $(patsubst %.bin,%,$@)-$(NAME_SUFFIX).sna $(COPY_SNAPSHOT_TO)
 	@printf "\033[32mdone\033[0m\n\n"
