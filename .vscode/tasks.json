@@ -34,15 +34,20 @@
                 {
                         "label": "build all",
                         "command": "make",
-                        "group": {
-                                "kind": "build",
-                                "isDefault": true
-                        }
+                        "group": "build"
                 },
                 {
                         "label": "part.cubo",
                         "command": "make clean-part.cubo build/part.cubo.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.box",
+                        "command": "make clean-part.box build/part.box.bin",
+                        "group": {
+                                "kind": "build",
+                                "isDefault": true
+                        }
                 }
         ]
 }
