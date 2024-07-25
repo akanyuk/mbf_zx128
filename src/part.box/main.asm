@@ -12,14 +12,14 @@ start	module lib
 	ei : ld sp, start
 	
 	ld a, %00111000 : call lib.SetScreenAttr
-	call PART_START + 3
-	
+	call PART_START
+
 .loop	halt
 	halt
 	halt
-	ld a, 2 : out #fe, a
-	call PART_START
-	ld a, 7 : out #fe, a
+	ld a, 1 : out #fe, a
+	call PART_START + 3
+	ld a, 0 : out #fe, a
 	jr .loop
 
 	org PART_START
