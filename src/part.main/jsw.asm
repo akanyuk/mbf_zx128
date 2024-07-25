@@ -87,9 +87,7 @@ jswSprite	ld (.jswChkOnScr + 1), a
 .skipJswLine2	dup 8 : inc hl : edup
 	jr .skipJswLine + 1
 
-; Print one char with ROM font
 ; DE - Screen memory address
-; A  - char
 printJswChar 	push hl, de, bc
 	ld h, 0 : ld l, a
 	add hl, hl : add hl, hl : add hl, hl 

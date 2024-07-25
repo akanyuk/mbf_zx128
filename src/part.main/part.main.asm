@@ -26,9 +26,9 @@
 
 	call interrStop
 
-	ld bc, #0808
+	ld bc, #1005
 	call z4Iteration
-.skip	
+	
 	call partCubo + 3
 	ld hl, partCubo
 	call interrStart
@@ -41,15 +41,39 @@
 	djnz 1b
 
 	call interrStop
-loop2
+
+	ld b, 100
+1	push bc
 	halt
 	call zapili4.start
-
 	halt
 	call zapili4.start
-
 	call randomNoise
-	jr loop2
+	pop bc 
+	djnz 1b
+
+	ld hl, randomNoise
+	call interrStart
+
+	ld a, 31
+1	push af
+	ld de, #5900
+	call pacman
+	pop af
+	halt	
+	dec a : cp -9 : jr nz, 1b
+
+	ld b, 90 : halt : djnz $-1
+
+	ld a, 31
+1	push af
+	ld de, #5900
+	call pacman
+	pop af
+	halt	
+	dec a : cp -9 : jr nz, 1b
+
+	jr $
 
 z4Iteration	ld a, c
 1	call zapili4.start + 6
@@ -101,6 +125,10 @@ zap4WithDelay	ld a, 10
 
 	include "common.asm"
 	include "jsw.asm"
+	
+pacman	module pacman
+	include "pacman.asm"
+	endmodule
 
 	module zapili4
 start	ld de, #4000
