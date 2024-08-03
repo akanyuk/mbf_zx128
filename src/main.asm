@@ -2,7 +2,7 @@
 	page 0
 
 	define _MUSIC_ 
-	; define _DEBUG_ 
+	define _DEBUG_ 
 
 	define P_TRACK 1 ; track and player here
 	
@@ -84,6 +84,7 @@ INTS_COUNTER	equ $+1
 	ret
 
 partMain	include "part.main/part.main.asm"
+	display 'partMain end: ', $
 partCubo	include "part.cubo/part.cubo.asm"
 
 page0e	display /d, '[page 0] free: ', #ffff - $, ' (', $, ')'	
@@ -92,6 +93,9 @@ page0e	display /d, '[page 0] free: ', #ffff - $, ' (', $, ')'
 page1s	
 PT3PLAY	include "lib/PTxPlay.asm"
 	incbin "res/t2.pt3"
+	module zapili4
+start	include "part.main/zapili4/player.asm"
+	endmodule
 page1e	display /d, '[page 1] free: ', 65536 - $, ' (', $, ')'
 
 	include "src/builder.asm"

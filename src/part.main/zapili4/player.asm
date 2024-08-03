@@ -1,7 +1,8 @@
-        jp play
-        ; reset frames
+        jp sPlay
+        ; $ + 3: reset frames
         ld de, FRAME_0000
         jr nextFrame
+sPlay	ld de, #4000
 play	; DE = starting screen address (#4000, #c000, etc...)
         ld	hl, FRAME_0000
         ld	a,h : sub high FRAME_END : or l : sub low FRAME_END

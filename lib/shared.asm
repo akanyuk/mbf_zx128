@@ -23,4 +23,6 @@ SetScreen	ld (CUR_SCREEN), a : ld b, a
 CUR_PAGE	db #00
 CUR_SCREEN	db #00
 
+Depack	include "dzx0_fast.asm"
+
 _start
