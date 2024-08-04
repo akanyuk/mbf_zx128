@@ -1500,7 +1500,6 @@ Volume	DB 0
 ChanA	DS CHP
 ChanB	DS CHP
 ChanC	DS CHP
-	DISPLAY "ChanRec: ", /D, $-ChanC
 
 ;GlobalVars
 DelyCnt	DB 0

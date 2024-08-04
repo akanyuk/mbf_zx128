@@ -1,3 +1,8 @@
+zap4WithDelay	ld a, 10 
+	or a : jp z, zapili4.start
+	dec a : ld (zap4WithDelay + 1), a
+	ret
+
 z4Iteration	ld a, c
 1	push af
 	push bc
@@ -42,16 +47,19 @@ rl1	call rnd16
 	ldir
 	ret
 
-zap4WithDelay	ld a, 10 
-	or a : jp z, zapili4.start
-	dec a : ld (zap4WithDelay + 1), a
-	ret
-
 	include "jsw.asm"
 	
 pacman	module pacman
 	include "pacman.asm"
 	endmodule
+
+partBoxIteration	
+1	halt
+	push bc
+	call EXTERNAL_PARTS_ADDR + 3
+	pop bc
+	djnz 1b
+	ret
 
 ;----------------------------------------
 ; in:  none

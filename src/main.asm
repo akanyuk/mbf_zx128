@@ -5,7 +5,7 @@
 	define _DEBUG_ 
 
 	define P_TRACK 1 ; track and player here
-	
+	define EXTERNAL_PARTS_ADDR #7000
 	org #6000
 page0s	module lib
 	include "lib/shared.asm"	
@@ -84,10 +84,15 @@ INTS_COUNTER	equ $+1
 	ret
 
 partMain	include "part.main/part.main.asm"
-	display 'partMain end: ', $
-partCubo	include "part.cubo/part.cubo.asm"
+	display /d, '[page 0] hole 1: ', EXTERNAL_PARTS_ADDR - $, ' (', $, ')'
 
-page0e	display /d, '[page 0] free: ', #ffff - $, ' (', $, ')'	
+	org EXTERNAL_PARTS_ADDR
+partCubo	include "part.cubo/part.cubo.asm"
+	display /d, '[page 0] hole 2: ', #8c00 - $, ' (', $, ')'
+
+	org #8c00
+PART_BOX_PACKED	incbin "build/part.box.bin.zx0"
+page0e	display /d, '[page 0] hole 3: ', #ffff - $, ' (', $, ')'
 
 	define _page1 : page 1 : org #c000
 page1s	
