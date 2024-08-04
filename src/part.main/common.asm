@@ -47,6 +47,7 @@ rl1	call rnd16
 	ldir
 	ret
 
+	; Jet Set Willy
 	include "jsw.asm"
 	
 pacman	module pacman
@@ -54,10 +55,10 @@ pacman	module pacman
 	endmodule
 
 partBoxIteration	
-1	halt
-	push bc
+1	push bc
 	call EXTERNAL_PARTS_ADDR + 3
 	pop bc
+	halt
 	djnz 1b
 	ret
 

@@ -6,6 +6,7 @@
 
 	define P_TRACK 1 ; track and player here
 	define EXTERNAL_PARTS_ADDR #7000
+
 	org #6000
 page0s	module lib
 	include "lib/shared.asm"	

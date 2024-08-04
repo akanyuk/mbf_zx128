@@ -19,7 +19,7 @@
 
 	ld b, 40 : halt : djnz $-1
 
-	ld a, 50 : ld (zap4WithDelay + 1), a
+	ld a, 32 : ld (zap4WithDelay + 1), a
 	ld hl, zap4WithDelay
 	call interrStart
 
@@ -58,47 +58,39 @@
 	ld hl, randomNoise
 	call interrStart
 
-	ld a, 31
-1	push af
-	ld de, #5900
 	call pacman
-	pop af
-	halt	
-	dec a : cp -9 : jr nz, 1b
-
 	ld b, 90 : halt : djnz $-1
-
-	ld a, 31
-1	push af
-	ld de, #5900
 	call pacman
-	pop af
-	halt	
-	dec a : cp -9 : jr nz, 1b
-
-	; TODO: one more packman with freezing and moving back
-
+	ld b, 90 : halt : djnz $-1
+	call pacman + 6 ; triple
+	ld b, 30 : halt : djnz $-1
+	call pacman + 3 ; move back
+.skip
 	; part box depacking
 	xor a : call lib.SetPage
 	ld hl, PART_BOX_PACKED
 	ld de, EXTERNAL_PARTS_ADDR
 	call lib.Depack
 
-	ld b, 255 : halt : djnz $-1
-	ld b, 100 : halt : djnz $-1
+	ld b, 80 : halt : djnz $-1
 	call interrStop
 
 	; part box
 	ld a, 2 : call EXTERNAL_PARTS_ADDR
-	ld b, 150 : call partBoxIteration
+	ld b, 255 : call partBoxIteration
+
 	ld a, 6 : call EXTERNAL_PARTS_ADDR
-	ld b, 100 : call partBoxIteration
+	ld b, 15 : call partBoxIteration
+
 	ld a, 4 : call EXTERNAL_PARTS_ADDR
-	ld b, 200 : call partBoxIteration
+	ld b, 45 : call partBoxIteration
+
 	ld a, 3 : call EXTERNAL_PARTS_ADDR
-	ld b, 3 : call partBoxIteration
+	ld b, 80 : call partBoxIteration
+	
 	ld a, 5 : call EXTERNAL_PARTS_ADDR
-	ld b, 3 : call partBoxIteration
+	ld b, 120 : call partBoxIteration
+	
 	ld a, 1 : call EXTERNAL_PARTS_ADDR
 	ld b, 255 : call partBoxIteration
 
