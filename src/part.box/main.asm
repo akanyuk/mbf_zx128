@@ -11,6 +11,10 @@ start	module lib
 
 	ei : ld sp, start
 	
+	ld hl, 0
+	ld de, #4000
+	ld bc, #1800
+	ldir
 	ld a, %00000000 : call lib.SetScreenAttr
 
 	ld a, 2 : call PART_START
@@ -52,9 +56,7 @@ iteration
 	ret
 
 	org PART_START
-	module box
 	include "part.box.asm"
-	endmodule
 
 	display /d, 'Part length: ', $ - PART_START
 	display 'Part ended at: ', $
