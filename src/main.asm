@@ -13,7 +13,8 @@ page0s	module lib
 	endmodule
 
 	di : ld sp, page0s
-	xor a : out (#fe), a 
+
+	ld hl, #4000 : ld de, #4001 : ld bc, #1aff : ld (hl), l : ldir
 
 	ld a,#5c : ld i,a : ld hl,interr : ld (#5cff),hl : im 2 : ei
 

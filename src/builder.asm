@@ -10,6 +10,15 @@
 	
 	; trd monoloader
  	MODULE boot
+
+	LUA
+	local f = assert(io.open("build/part.intro.bin", "rb"))
+	local current = f:seek()      -- get current position
+     	local size = f:seek("end")    -- get file size
+      	sj.insert_define("PART_INTRO_SIZE", size)
+	ENDLUA
+	display /d, 'Part intro size: ', PART_INTRO_SIZE
+
 Basic:
 	db #00,#01	;номер строки
 	dw EndLine1 - Line1
@@ -21,6 +30,14 @@ Line1:
 	; screen
 	xor a : out (#fe), a
 	ld hl, #4000 : ld de, #4001 : ld bc, #1aff : ld (hl), l : ldir
+
+	; part `intro`
+	ld a,#10, bc,#7ffd : out (c),a
+	ld de, (#5cf4)
+	ld hl, #6000
+	ld bc, (PART_INTRO_SIZE + 256)/256*256 + 5
+	call #3d13
+	call #6000
 
 	ifdef _page7
 	ld a,#17, bc,#7ffd : out (c),a
@@ -120,6 +137,16 @@ EndBasic:
 	emptytrd TRD_FILENAME
 	savetrd TRD_FILENAME, "boot.B", boot.Basic, boot.EndBasic - boot.Basic
 
+	org #0000
+partIntroStart	
+	disp #6000
+	include "src/part.intro/part.intro.asm"
+	ent	
+partIntroEnd
+	savetrd TRD_FILENAME, "intro.C", partIntroStart, partIntroEnd - partIntroStart
+
+	display "partIntroStart :", partIntroStart
+	
 	ifdef _page7
 	page 7
 	savetrd TRD_FILENAME, "7.C",page7s, page7e-page7s
