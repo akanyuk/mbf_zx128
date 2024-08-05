@@ -34,6 +34,11 @@
                 {
                         "label": "build all",
                         "command": "make",
+                        "group": "build"
+                },
+                {
+                        "label": "part.intro",
+                        "command": "make clean-part.intro build/part.intro.bin",
                         "group": {
                                 "kind": "build",
                                 "isDefault": true
