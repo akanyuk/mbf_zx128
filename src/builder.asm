@@ -38,7 +38,8 @@ Line1:
 	ld bc, (PART_INTRO_SIZE + 256)/256*256 + 5
 	call #3d13
 	call #6000
-
+	im 1
+	
 	ifdef _page7
 	ld a,#17, bc,#7ffd : out (c),a
 	ld de, (#5cf4)
@@ -138,10 +139,12 @@ EndBasic:
 	savetrd TRD_FILENAME, "boot.B", boot.Basic, boot.EndBasic - boot.Basic
 
 	org #0000
-partIntroStart	
+partIntroStart
+	module introBuilder	
 	disp #6000
 	include "src/part.intro/part.intro.asm"
 	ent	
+	endmodule
 partIntroEnd
 	savetrd TRD_FILENAME, "intro.C", partIntroStart, partIntroEnd - partIntroStart
 

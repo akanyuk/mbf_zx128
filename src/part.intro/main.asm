@@ -4,7 +4,8 @@
 
 	org #6000
 start	ei : ld sp, start
-	
+	xor a : out (#fe), a
+
 	call PART_START
 	
 	di : halt
