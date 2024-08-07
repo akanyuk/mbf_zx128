@@ -36,7 +36,7 @@
 	ld hl, partCubo
 	call interrStart
 
-	ld b, 255
+	ld b, 130
 1	push bc
 	call zapili4.start
 	halt 
@@ -72,7 +72,7 @@
 	ld de, EXTERNAL_PARTS_ADDR
 	call lib.Depack
 
-	ld b, 80 : halt : djnz $-1
+	ld b, 64 : halt : djnz $-1
 	call interrStop
 
 	; part box
