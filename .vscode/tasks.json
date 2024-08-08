@@ -53,6 +53,11 @@
                         "label": "part.box",
                         "command": "make clean-part.box build/part.box.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.greets",
+                        "command": "make clean-part.greets build/part.greets.bin",
+                        "group": "build"
                 }
         ]
 }
