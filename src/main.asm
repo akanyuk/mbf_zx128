@@ -13,20 +13,22 @@ page0s	module lib
 	include "lib/shared.asm"	
 	endmodule
 
-	di : ld sp, page0s
+	di 
 
 	ld hl, #4000 : ld de, #4001 : ld bc, #1aff : ld (hl), l : ldir
 
 	ld a,#5c : ld i,a : ld hl,interr : ld (#5cff),hl : im 2 : ei
 
-	xor a : call lib.SetPage
 	xor a : call lib.SetScreen
 	
 	call musicStart
-
 	call partMain
 
-	jr $
+	di
+	ld a, P_TRACK : call lib.SetPage
+	call PT3PLAY + 8
+	xor a : call lib.SetPage
+	ret	
 
 musicStart	ifdef _MUSIC_
 	ld a, P_TRACK : call lib.SetPage

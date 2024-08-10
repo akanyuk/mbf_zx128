@@ -150,6 +150,6 @@
 
 	call interrStop
 
-	jr $
-
+	ret
+	
 	include "common.asm"

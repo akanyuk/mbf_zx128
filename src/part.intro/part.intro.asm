@@ -21,8 +21,6 @@
 
 	call fadeScreen
 
-	; jr $
-
 	ifndef _NOPAUSE_ : ld b, 86 : halt : djnz $-1 : endif
 
 	di

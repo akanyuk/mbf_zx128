@@ -2,14 +2,14 @@
 	; Подгружается в каждом `main.asm` для совпадения адресов библиотечных функций во всех частях
 	jp _start
 
-	; Заливка цветом
-	; a - цвет атрибута
+	; Fill screen by color
+	; a - attribute color
 SetScreenAttr	ld hl, #5800 : ld de, #5801 : ld bc, #02ff : ld (hl), a : ldir : ret
 
 
 SwapScreen	ld a, (CUR_SCREEN) : xor %00001000 : ld (CUR_SCREEN), a
 	or a : jr z, $+4 : sub 2 : add 7
-	; устанавливаем страницу, оставляя текущий экран
+	; устанавливает страницу, оставляя текущий экран
 SetPage	ld (CUR_PAGE), a : ld b, a
 	ld a, (CUR_SCREEN) : or b : or %00010000
 	ld bc, #7ffd : out (c), a 

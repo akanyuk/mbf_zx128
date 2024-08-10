@@ -19,6 +19,15 @@
 	ENDLUA
 	display /d, 'Part intro size: ', PART_INTRO_SIZE
 
+
+	LUA
+	local f = assert(io.open("build/part.outro.bin", "rb"))
+	local current = f:seek()      -- get current position
+     	local size = f:seek("end")    -- get file size
+      	sj.insert_define("PART_OUTRO_SIZE", size)
+	ENDLUA
+	display /d, 'Part outro size: ', PART_OUTRO_SIZE
+
 Basic:
 	db #00,#01	;номер строки
 	dw EndLine1 - Line1
@@ -109,8 +118,18 @@ Line1:
 	else
 	ld bc, (page0e - page0s + 256)/256*256 + 5
 	endif
-	jp #3d13
-	
+	call #3d13
+	call #6000
+	im 1
+
+	; part `outro`
+	ld a,#10, bc,#7ffd : out (c),a
+	ld de, (#5cf4)
+	ld hl, #6000
+	ld bc, (PART_OUTRO_SIZE + 256)/256*256 + 5
+	call #3d13
+	jp #6000
+
 	db #0D
 EndLine1:	db #00,#02
 	dw EndLine2 - Line2
@@ -147,8 +166,6 @@ partIntroStart
 	endmodule
 partIntroEnd
 	savetrd TRD_FILENAME, "intro.C", partIntroStart, partIntroEnd - partIntroStart
-
-	display "partIntroStart :", partIntroStart
 	
 	ifdef _page7
 	page 7
@@ -183,5 +200,12 @@ partIntroEnd
 	page 0
 	savetrd TRD_FILENAME, "0.C", page0s, page0e-page0s
 	savebin "build/page0.c", page0s, page0e-page0s
-	
+
+	org #6000
+partOutroStart	module outroBuilder	
+	include "src/part.outro/part.outro.asm"
+	endmodule
+partOutroEnd
+	savetrd TRD_FILENAME, "outro.C", partOutroStart, partOutroEnd - partOutroStart
+
 	endif

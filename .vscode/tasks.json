@@ -45,6 +45,11 @@
                         "group": "build"
                 },
                 {
+                        "label": "part.outro",
+                        "command": "make clean-part.outro build/part.outro.bin",
+                        "group": "build"
+                },
+                {
                         "label": "part.cubo",
                         "command": "make clean-part.cubo build/part.cubo.bin",
                         "group": "build"
