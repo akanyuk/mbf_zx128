@@ -1,10 +1,11 @@
 	jp main
+	jp showGreetsText
 
 	ld hl, BG
 	ld de, #4000
-	call lib.Depack
+	jp lib.Depack
 
-	ld hl, GREETS_HDR
+showGreetsText	ld hl, GREETS_HDR
 	ld de, #4000
 	jp lib.PrintText
 

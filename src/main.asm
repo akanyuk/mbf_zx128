@@ -1,8 +1,9 @@
 	device zxspectrum128
 	page 0
 
-	; define _MUSIC_ 
-	define _DEBUG_ 
+	define _MUSIC_ 
+	; define _DEBUG_ 
+	; define _NOPAUSE_
 
 	define P_TRACK 1 ; track and player here
 	define EXTERNAL_PARTS_ADDR #7000
@@ -102,6 +103,9 @@ PT3PLAY	include "lib/PTxPlay.asm"
 	incbin "res/t2.pt3"
 	module zapili4
 start	include "part.main/zapili4/player.asm"
+	endmodule
+	module greets
+start	include "part.greets/part.greets.asm"
 	endmodule
 page1e	display /d, '[page 1] free: ', 65536 - $, ' (', $, ')'
 

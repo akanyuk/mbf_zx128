@@ -24,6 +24,24 @@ z4Iteration	ld a, c
 	dec a : jr nz, 1b
 	ret
 
+rndNoiseIterA
+1	push bc
+	call randomNoiseA
+	halt
+	halt
+	pop bc
+	djnz 1b
+	ret
+
+randomNoiseA	ld b, #41
+	call rl1
+
+	ld b, #49
+	call rl1
+
+	ld b, #51
+	jr rl1
+
 randomNoise	ld b, #40
 	call rl1
 
@@ -54,6 +72,17 @@ pacman	module pacman
 	include "pacman.asm"
 	endmodule
 
+enoughtText
+	ld hl, ENOUGHT_TXT1
+	ld de, #5044
+	call lib.PrintText
+	ld hl, ENOUGHT_TXT2
+	ld de, #5064
+	jp lib.PrintText
+
+ENOUGHT_TXT1	db "THAT'S ENOUGH", 0
+ENOUGHT_TXT2	db "FOR THIS SCENE", 0
+
 partBoxIteration	
 1	push bc
 	call EXTERNAL_PARTS_ADDR + 3
@@ -61,6 +90,18 @@ partBoxIteration
 	halt
 	djnz 1b
 	ret
+
+partBoxText
+	ld hl, #5ac0
+	ld de, #5ac1
+	ld bc, #001f
+	ld (hl), %01111000
+	ldir
+
+	ld hl, PART_BOX_TEXT
+	ld de, #50c0
+	jp lib.PrintText
+PART_BOX_TEXT	db "   WE ALWAYS PUSHING THE BOX    ", 0
 
 ;----------------------------------------
 ; in:  none

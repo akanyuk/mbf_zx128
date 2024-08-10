@@ -2,7 +2,7 @@
 PROJECT_NAME = tbf
 
 # Listing the parts that should be assembled automatically
-PARTS=part.intro part.box
+PARTS=part.box
 
 NAME_SUFFIX = $(shell date +%Y%m%d)-$(shell git log --format="%h" -n 1)
 
@@ -14,7 +14,7 @@ endif
 
 all: build
 
-build: $(PARTS:%=build/%.bin.zx0) ## Default: build project
+build: build/part.intro.bin $(PARTS:%=build/%.bin.zx0) ## Default: build project
 	@printf "\033[32mBuilding '$(PROJECT_NAME)'\033[0m\n"
 
 	rm -f build/$(PROJECT_NAME)*.sna
