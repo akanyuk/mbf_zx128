@@ -1,4 +1,4 @@
-	define _PRN_TXT_LINE_PAUESE_ 30
+	define _PRN_TXT_LINE_PAUESE_ 40
 
 printText1	ld hl, TEXT1_1
 	ld de, #4846 
