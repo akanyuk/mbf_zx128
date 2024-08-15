@@ -2,13 +2,22 @@
 
 rm -f 9.gif
 
-ffmpeg -i video.mp4 -ss 0:00:00.0 -t 0:00:10.0 -vf "scale=256:256,crop=256:192,eq=brightness=0.3:contrast=2.5" _0.mp4
-ffmpeg -i _0.mp4 _0.gif
-ffmpeg -i _0.mp4 -vf "reverse" _1.gif
+ffmpeg -i video.mp4 -ss 0:00:00.0 -t 0:00:02.5 -vf "hflip,scale=128:128,pad=width=256:height=192:x=0:y=64:color=black,eq=brightness=0.5:contrast=1.8" _0.mp4
+ffmpeg -i _0.mp4 -i interlace2.png -filter_complex "overlay" _1.mp4
+ffmpeg -i _1.mp4 _0.gif
+ffmpeg -i _1.mp4 -vf "reverse" _1.gif
 
-gifsicle -U -k 2  --merge _0.gif _1.gif -o 9.gif
+# echo `seq -f "\"#%g\" " 0 4 100`
+# "#0" "#8" "#16" "#24" "#32" "#40" "#48" "#56" "#64" "#72" "#80" "#88" "#96" "#104" "#112" "#120" "#128" "#136" "#144" "#152" "#160" -o 9.gif
+# "#0" "#4" "#8" "#12" "#16" "#20" "#24" "#28" "#32" "#36" "#40" "#44" "#48" "#52" "#56" "#60" "#64" "#68" "#72" "#76" "#80" "#84" "#88" "#92" "#96" "#100"
+
+gifsicle -U -k 2 _0.gif "#0" "#8" "#16" "#24" "#32" "#40" "#48" "#56" "#64" "#72" "#80" "#88" "#96" "#104" "#112" "#120" "#128" "#136" "#144" "#152" "#160" -o _01.gif
+gifsicle -U -k 2 _1.gif "#0" "#8" "#16" "#24" "#32" "#40" "#48" "#56" "#64" "#72" "#80" "#88" "#96" "#104" "#112" "#120" "#128" "#136" "#144" "#152" "#160" -o _11.gif
+gifsicle --merge _01.gif _11.gif -o 9.gif
 
 rm -f _0.mp4
 rm -f _1.mp4
 rm -f _0.gif
 rm -f _1.gif
+rm -f _01.gif
+rm -f _11.gif
