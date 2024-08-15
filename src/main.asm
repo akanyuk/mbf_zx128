@@ -97,6 +97,7 @@ partCubo	include "part.cubo/part.cubo.asm"
 
 	org #8c00
 PART_BOX_PACKED	incbin "build/part.box.bin.zx0"
+PART_HOUSES_PCK	incbin "build/part.houses.bin.zx0"
 page0e	display /d, '[page 0] hole 3: ', #ffff - $, ' (', $, ')'
 
 	define _page1 : page 1 : org #c000

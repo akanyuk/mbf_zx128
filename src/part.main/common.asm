@@ -103,6 +103,60 @@ partBoxText
 	jp lib.PrintText
 PART_BOX_TEXT	db "   WE ALWAYS PUSHING THE BOX    ", 0
 
+partHousesDoubleIteration	
+	ld b, 16
+1	push bc
+	call EXTERNAL_PARTS_ADDR
+	pop bc
+	halt
+	djnz 1b
+
+	ld b, 10 : halt : djnz $-1
+
+	ld b, 16
+1	push bc
+	call EXTERNAL_PARTS_ADDR
+	pop bc
+	halt
+	djnz 1b
+
+	ret
+
+; Print one attribute char with ROM font
+; DE - Attributes address
+; A  - char
+; C  - attribute value
+PrintCharAttr 	push bc
+	sub #1f
+	ld hl, #3d00 - #08
+	ld bc, #08
+1	add hl, bc
+	dec a
+	jr nz, 1b
+	ex de, hl
+	pop bc
+
+	ld b, 8
+1	ld a, (de) 
+
+	dup 8
+	sla a : jr nc, $ + 3
+	ld (hl), c
+	inc hl
+	edup
+
+	push bc
+	ld bc, 24
+	add hl, bc
+	pop bc
+
+	inc de
+	djnz 1b
+
+	ret 
+
+clearScreen	ld hl, #4000 : ld de, #4001 : ld bc, #17ff : ld (hl), l : ldir : ret
+
 ;----------------------------------------
 ; in:  none
 ; out: HL = random 16bit value

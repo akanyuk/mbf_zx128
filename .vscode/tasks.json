@@ -63,6 +63,11 @@
                         "label": "part.greets",
                         "command": "make clean-part.greets build/part.greets.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.houses",
+                        "command": "make clean-part.houses build/part.houses.bin",
+                        "group": "build"
                 }
         ]
 }

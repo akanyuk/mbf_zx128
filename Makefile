@@ -2,13 +2,9 @@
 PROJECT_NAME = tbf
 
 # Listing the parts that should be assembled automatically
-PARTS=part.box
+PARTS=part.box part.houses
 
 NAME_SUFFIX = $(shell date +%Y%m%d)-$(shell git log --format="%h" -n 1)
-
-ifeq ($(COPY_SNAPSHOT_TO),)
-	COPY_SNAPSHOT_TO = C:\Temp
-endif
 
 .PHONY: all build clean clean-% help
 
@@ -26,11 +22,15 @@ build: build/part.intro.bin $(PARTS:%=build/%.bin.zx0) ## Default: build project
 		-DTRD_FILENAME=\"build/$(PROJECT_NAME).trd\" \
 		src/main.asm
 
+ifneq ($(COPY_SNAPSHOT_TO),)
 	cp --force build/$(PROJECT_NAME)-$(NAME_SUFFIX).sna $(COPY_SNAPSHOT_TO)
+endif
 
 	@printf "\033[32mDone\033[0m\n"
 
+ifneq ($(EMULATOR_BINARY),)
 	$(EMULATOR_BINARY) build/$(PROJECT_NAME)-$(NAME_SUFFIX).sna
+endif
 
 build/%.bin.zx0: build/%.bin
 	@printf "\033[32mBuilding '$@'\033[0m\n"
@@ -52,11 +52,15 @@ build/%.bin: clean-%
 		-DBIN_FILENAME=\"$@\" \
 		src/$(patsubst build/%.bin,%,$@)/main.asm
 
+ifneq ($(COPY_SNAPSHOT_TO),)
 	cp --force $(patsubst %.bin,%,$@)-$(NAME_SUFFIX).sna $(COPY_SNAPSHOT_TO)
+endif
 
 	@printf "\033[32mdone\033[0m\n\n"
 
+ifneq ($(EMULATOR_BINARY),)
 	$(EMULATOR_BINARY) $(patsubst %.bin,%,$@)-$(NAME_SUFFIX).sna
+endif
 
 clean-%:
 	rm -f build/$(subst clean-,,$@)*

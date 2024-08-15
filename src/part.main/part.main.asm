@@ -20,8 +20,6 @@
 
 	ld b, 40 : halt : djnz $-1
 
-.skip
-
 	ld a, 32 : ld (zap4WithDelay + 1), a
 	ld hl, zap4WithDelay
 	call interrStart
@@ -145,10 +143,73 @@
 	ifndef _NOPAUSE_ : ld b, 50 : halt : djnz $-1 : endif
 
 	ld a, 7 : call lib.SetScreenAttr
-
 	ld b, 50 : call rndNoiseIterA
 
+.skip
+	; Part houses depacking
+	xor a : call lib.SetPage
+	ld hl, PART_HOUSES_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+
 	call interrStop
+
+	call clearScreen
+	ld a, %01000111 : call lib.SetScreenAttr
+
+	call partHousesDoubleIteration
+	ld b, 30 : halt : djnz $-1
+
+	call partHousesDoubleIteration
+	ld b, 30 : halt : djnz $-1
+
+	ld a, 1 : call lib.SetPage
+	ld hl, zapili4.start
+	call interrStart
+
+	ld b, 30 : halt : djnz $-1
+	
+	ld a, "1"
+1	push af
+
+	ld b, 5 : halt : djnz $-1
+
+	ex af, af'
+	ld a, %01000111 : call lib.SetScreenAttr
+	ex af, af'
+
+	ld b, 5 : halt : djnz $-1
+
+	ld de, #5800
+	ld c, %00111000
+	call PrintCharAttr
+
+	call partHousesDoubleIteration
+	ld b, 10 : halt : djnz $-1
+	call partHousesDoubleIteration
+
+	pop af
+	inc a : cp "8" : jr nz, 1b
+
+	ld b, 50 : halt : djnz $-1
+
+	ld a, %01000111 : call lib.SetScreenAttr
+	
+	ld a, "1"
+	ld de, #5800
+	ld c, %00111000
+	call PrintCharAttr
+
+	call partHousesDoubleIteration
+	ld b, 30 : halt : djnz $-1
+
+	ld a, %01000111 : call lib.SetScreenAttr
+
+	ld b, 100 : call rndNoiseIterA
+
+	call interrStop
+	
+	jr $
 
 	ret
 	

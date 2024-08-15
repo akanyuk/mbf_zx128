@@ -1,7 +1,9 @@
 	di
 
+	ifdef _MUSIC_
 	call PT3PLAY
 	ld a, #01 : ld (MUSIC_STATE), a
+	endif
 
 	ld a,#5c : ld i,a : ld hl,interr : ld (#5cff),hl : im 2 : ei
 
@@ -34,9 +36,11 @@
 	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
 	ifndef _NOPAUSE_ : ld b, 20 : halt : djnz $-1 : endif
 
+	ifdef _MUSIC_
 	xor a : ld (MUSIC_STATE), a
 	call PT3PLAY + 8	
-	
+	endif
+
 	jr $
 
 	; Fill screen by color
@@ -66,7 +70,7 @@ MUSIC_STATE	equ $+1
 
 	include "text.asm"
 
-PT3PLAY	include "lib/PTxPlay.asm"
 	ifdef _MUSIC_
+PT3PLAY	include "lib/PTxPlay.asm"
 	incbin "res/t3.pt3"
 	endif
