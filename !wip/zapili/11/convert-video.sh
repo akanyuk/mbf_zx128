@@ -2,7 +2,7 @@
 
 rm -f out.gif
 
-ffmpeg -i video1.mp4 -ss 0:00:00.0 -t 0:00:12.00 -vf "scale=64:64,eq=brightness=1.6:contrast=2.5" _0.mp4
+ffmpeg -i video1.mp4 -ss 0:00:00.0 -t 0:00:12.00 -vf "scale=128:64,eq=brightness=1.6:contrast=2.5" _0.mp4
 ffmpeg -i _0.mp4 -i interlace.png -filter_complex "overlay" _1.mp4
 ffmpeg -i _1.mp4 _0.gif
 ffmpeg -i _1.mp4 -vf "reverse" _1.gif

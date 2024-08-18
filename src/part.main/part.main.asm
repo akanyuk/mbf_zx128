@@ -251,7 +251,6 @@
 
 	call interrStop
 
-.skip
 	; Part chunks1 depacking
 	ld a, 4 : call lib.SetPage
 	ld hl, PART_CHNK1_PCK
@@ -292,8 +291,25 @@
 	pop bc
 	djnz 1b
 
-	xor a : call lib.SetScreenAttr
+	call clearScreen
+	ld a, 7 : call lib.SetScreenAttr
+.skip
+	; Part chunks1 depacking
+	ld a, 6 : call lib.SetPage
+	ld hl, PART_4SLOW_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+	
+	ld hl, randomNoiseA
+	call interrStart
+	ld b, 50 : halt : djnz $-1
 
+	ld a, 1 : call lib.SetPage
+	call part4SlowFlow
+
+	ld b, 64 : halt : djnz $-1
+	call interrStop
+	
 	ret
 	
 	include "common.asm"

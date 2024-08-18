@@ -131,4 +131,10 @@ PART_CHNK1_PCK	incbin "build/part.chunks1.bin.zx0"
 
 page4e	display /d, '[page 4] free: ', 65536 - $, ' (', $, ')'
 
+	define _page6 : page 6 : org #c000
+page6s	
+PART_4SLOW_PCK	incbin "build/part.4slow.bin.zx0"
+
+page6e	display /d, '[page 6] free: ', 65536 - $, ' (', $, ')'
+
 	include "src/builder.asm"

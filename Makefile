@@ -2,7 +2,7 @@
 PROJECT_NAME = tbf
 
 # Listing the parts that should be assembled automatically
-PARTS=part.box part.houses part.chunks1 part.12anim
+PARTS=part.box part.houses part.chunks1 part.12anim part.4slow
 
 NAME_SUFFIX = $(shell date +%Y%m%d)-$(shell git log --format="%h" -n 1)
 
