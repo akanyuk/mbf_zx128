@@ -6,6 +6,8 @@
 	; zapili4 here
 	ld a, 1 : call lib.SetPage
 
+	call horch.init
+
 	ld b, 20 : halt : djnz $-1
 
 	ld a, 4
@@ -30,19 +32,55 @@
 
 	call interrStop
 
+	ld hl, horch.interr
+	call interrStart
+
+	ld b, 14
+1	push bc
+	halt 
+	call zapili4.start
+	halt 
+	call zapili4.start
+	halt 
+	call zapili4.start
+	halt 
+	call zapili4.start
+	halt 	
+	call horch.fadein
+	pop bc : djnz 1b
+
 	ld bc, #1003
 	call z4Iteration
 
+	call horch.blink
+
+	ld b, 14
+1	push bc
+	halt 
+	call zapili4.start
+	halt 
+	call zapili4.start
+	halt 
+	call zapili4.start
+	halt 
+	call zapili4.start
+	call horch.fadeout
+	pop bc : djnz 1b
+	call interrStop
+
+	ld a, #47 : call lib.SetScreenAttr
+	call clearScreen
+
 	call enoughtText
 
-	ld bc, #1002
+	ld bc, #0802
 	call z4Iteration
 
 	call partCubo + 3
 	ld hl, partCubo
 	call interrStart
 
-	ld b, 130
+	ld b, 70
 1	push bc
 	call zapili4.start
 	halt 
@@ -67,9 +105,9 @@
 	call pacman
 	ld b, 90 : halt : djnz $-1
 	call pacman
-	ld b, 90 : halt : djnz $-1
+	ld b, 85 : halt : djnz $-1
 	call pacman + 6 ; triple
-	ld b, 30 : halt : djnz $-1
+	ld b, 35 : halt : djnz $-1
 	call pacman + 3 ; move back
 
 	; part box depacking

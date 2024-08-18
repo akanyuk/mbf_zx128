@@ -50,6 +50,11 @@
                         "group": "build"
                 },
                 {
+                        "label": "part.horch",
+                        "command": "make clean-part.horch build/part.horch.bin",
+                        "group": "build"
+                },
+                {
                         "label": "part.cubo",
                         "command": "make clean-part.cubo build/part.cubo.bin",
                         "group": "build"

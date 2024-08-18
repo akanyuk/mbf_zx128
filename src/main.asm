@@ -94,12 +94,20 @@ INTS_COUNTER	equ $+1
 	ret
 
 partMain	include "part.main/part.main.asm"
-	display /d, '[page 0] hole 0: ', EXTERNAL_PARTS_ADDR - $, ' (', $, ')'
+	display /d, '[page 0] remains until the overlap: ', EXTERNAL_PARTS_ADDR - $, ' (', $, ')'
 
 partCubo	include "part.cubo/part.cubo.asm"
-	display /d, '[page 0] hole 1: ', #8c00 - $, ' (', $, ')'
+	; display /d, '[page 0] hole 1: ', #8c00 - $, ' (', $, ')'
 
-	org #8c00
+	; org #8c00
+	module horch
+init	equ $
+fadein	equ $ + 3
+fadeout	equ $ + 6
+blink	equ $ + 9
+interr	equ $ + 12
+	include "part.horch/part.horch.asm"	
+	endmodule
 PART_BOX_PACKED	incbin "build/part.box.bin.zx0"
 PART_HOUSES_PCK	incbin "build/part.houses.bin.zx0"
 PART_12ANM_PCK	incbin "build/part.12anim.bin.zx0"
