@@ -112,4 +112,11 @@ start	include "part.greets/part.greets.asm"
 	endmodule
 page1e	display /d, '[page 1] free: ', 65536 - $, ' (', $, ')'
 
+	define _page3 : page 3 : org #c000
+page3s	
+	module tv
+start	include "part.tv/part.tv.asm"
+	endmodule
+page3e	display /d, '[page 3] free: ', 65536 - $, ' (', $, ')'
+
 	include "src/builder.asm"

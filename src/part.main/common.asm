@@ -122,6 +122,30 @@ partHousesDoubleIteration
 
 	ret
 
+partTV	ld a, 3 : call lib.SetPage
+	call tv.start	
+	call rndNoiseTV
+	call tv.start + 3
+	call rndNoiseTV
+	call tv.start + 6
+	call rndNoiseTV
+	call tv.start + 9
+	call rndNoiseTV
+	call tv.start + 12
+	ret
+
+rndNoiseTV
+	ld b, 25 : halt : djnz $-1
+	ld b, 25
+1	push bc
+	call randomNoise
+	call randomNoise
+	call randomNoise		
+	pop bc
+	halt
+	djnz 1b
+	ret
+
 ; Print one attribute char with ROM font
 ; DE - Attributes address
 ; A  - char

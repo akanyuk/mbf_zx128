@@ -68,6 +68,11 @@
                         "label": "part.houses",
                         "command": "make clean-part.houses build/part.houses.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.tv",
+                        "command": "make clean-part.tv build/part.tv.bin",
+                        "group": "build"
                 }
         ]
 }

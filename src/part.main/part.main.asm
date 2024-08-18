@@ -146,6 +146,7 @@
 	ld b, 50 : call rndNoiseIterA
 
 .skip
+
 	; Part houses depacking
 	xor a : call lib.SetPage
 	ld hl, PART_HOUSES_PCK
@@ -185,8 +186,6 @@
 	call PrintCharAttr
 
 	call partHousesDoubleIteration
-	ld b, 10 : halt : djnz $-1
-	call partHousesDoubleIteration
 
 	pop af
 	inc a : cp "8" : jr nz, 1b
@@ -209,6 +208,17 @@
 
 	call interrStop
 	
+	call partTV
+
+	ld b, 50 : halt : djnz $-1
+	ld a, %01000111 : call lib.SetScreenAttr
+
+	ld a, 1 : call lib.SetPage
+	ld hl, zapili4.start
+	call interrStart
+
+	ld b, 100 : call rndNoiseIterA
+
 	jr $
 
 	ret
