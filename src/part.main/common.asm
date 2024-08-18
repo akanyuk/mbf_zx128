@@ -188,6 +188,7 @@ partChunks1Main
 	halt
 	pop bc : djnz 1b
 
+	call interrStop
 	ret	
 
 part12AnmFlow	define PART_12ANM_PAUSE_IN 8
@@ -223,6 +224,26 @@ part12AnmFlow	define PART_12ANM_PAUSE_IN 8
 
 	ret
 
+catText	ld b, 17
+	ld de, #4000
+	ld hl, CAT_FINE_TEXT
+1	push bc
+	push hl
+	push de
+	ld a, (hl)
+	call lib.PrintChar_8x8
+	halt
+	halt
+	halt
+	pop de
+	call downDE8
+	pop hl
+	inc hl
+	pop bc : djnz 1b
+	ret
+
+CAT_FINE_TEXT	db "A CAT IS FINE TOO"
+
 ; Print one attribute char with ROM font
 ; DE - Attributes address
 ; A  - char
@@ -255,6 +276,8 @@ PrintCharAttr 	push bc
 	djnz 1b
 
 	ret 
+
+downDE8	ld a, d : add 8 : ld d, a : ld a,e : sub #e0 : ld e,a : sbc a,a : and #f8 : add a,d : ld d,a : ret
 
 clearScreen	ld hl, #4000 : ld de, #4001 : ld bc, #17ff : ld (hl), l : ldir : ret
 

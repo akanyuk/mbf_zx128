@@ -94,16 +94,17 @@ INTS_COUNTER	equ $+1
 	ret
 
 partMain	include "part.main/part.main.asm"
-	display /d, '[page 0] hole 1: ', EXTERNAL_PARTS_ADDR - $, ' (', $, ')'
+	display /d, '[page 0] hole 0: ', EXTERNAL_PARTS_ADDR - $, ' (', $, ')'
 
-	org EXTERNAL_PARTS_ADDR
 partCubo	include "part.cubo/part.cubo.asm"
-	display /d, '[page 0] hole 2: ', #8c00 - $, ' (', $, ')'
+	display /d, '[page 0] hole 1: ', #8c00 - $, ' (', $, ')'
 
 	org #8c00
 PART_BOX_PACKED	incbin "build/part.box.bin.zx0"
 PART_HOUSES_PCK	incbin "build/part.houses.bin.zx0"
-page0e	display /d, '[page 0] hole 3: ', #ffff - $, ' (', $, ')'
+PART_12ANM_PCK	incbin "build/part.12anim.bin.zx0"
+CAT1_PCK	incbin "res/cat1.scr.zx0"
+page0e	display /d, '[page 0] hole 2: ', #ffff - $, ' (', $, ')'
 
 	define _page1 : page 1 : org #c000
 page1s	
@@ -122,7 +123,6 @@ page3s
 	module tv
 start	include "part.tv/part.tv.asm"
 	endmodule
-PART_12ANM_PCK	incbin "build/part.12anim.bin.zx0"	
 page3e	display /d, '[page 3] free: ', 65536 - $, ' (', $, ')'
 
 	define _page4 : page 4 : org #c000

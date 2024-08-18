@@ -219,7 +219,7 @@
 	call interrStop
 
 	; Part 12anim depacking
-	ld a, 3 : call lib.SetPage
+	xor a : call lib.SetPage
 	ld hl, PART_12ANM_PCK
 	ld de, EXTERNAL_PARTS_ADDR
 	call lib.Depack	
@@ -250,7 +250,8 @@
 	djnz 1b
 
 	call interrStop
-	
+
+.skip
 	; Part chunks1 depacking
 	ld a, 4 : call lib.SetPage
 	ld hl, PART_CHNK1_PCK
@@ -258,8 +259,41 @@
 	call lib.Depack	
 	
 	call partChunks1Main
+
 	xor a : call lib.SetScreen
-.skip	
+	ld a, 1 : call lib.SetPage
+	ld a, #47 : call lib.SetScreenAttr
+
+	ld b, 50
+1	push bc
+	halt
+	call zapili4.start
+	call randomNoise
+	call randomNoise
+	call randomNoise		
+	pop bc
+	djnz 1b
+
+	xor a : call lib.SetPage
+	ld hl, CAT1_PCK
+	ld de, #4000
+	call lib.Depack	
+
+	ld b, 25 : halt : djnz $-1
+
+	call catText
+
+	ld b, 50
+1	push bc
+	halt
+	call randomNoise
+	call randomNoise
+	call randomNoise		
+	pop bc
+	djnz 1b
+
+	xor a : call lib.SetScreenAttr
+
 	ret
 	
 	include "common.asm"
