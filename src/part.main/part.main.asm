@@ -145,8 +145,6 @@
 	ld a, 7 : call lib.SetScreenAttr
 	ld b, 50 : call rndNoiseIterA
 
-.skip
-
 	; Part houses depacking
 	xor a : call lib.SetPage
 	ld hl, PART_HOUSES_PCK
@@ -217,7 +215,20 @@
 	ld hl, zapili4.start
 	call interrStart
 
+.skip
+
 	ld b, 100 : call rndNoiseIterA
+	call interrStop
+
+	; Part chunks1 depacking
+	ld a, 4 : call lib.SetPage
+	ld hl, PART_CHNK1_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+	
+	call partChunks1Main
+
+	xor a : call lib.SetScreen
 
 	jr $
 

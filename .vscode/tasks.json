@@ -73,6 +73,11 @@
                         "label": "part.tv",
                         "command": "make clean-part.tv build/part.tv.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.chunks1",
+                        "command": "make clean-part.chunks1 build/part.chunks1.bin",
+                        "group": "build"
                 }
         ]
 }

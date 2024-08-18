@@ -146,6 +146,50 @@ rndNoiseTV
 	djnz 1b
 	ret
 
+partChunks1Main
+	call clearScreen
+	call EXTERNAL_PARTS_ADDR
+
+	ld hl, EXTERNAL_PARTS_ADDR + 12
+	call interrStart
+
+	// fade in	
+	ld b, 14
+1	push bc
+	call interrStop
+	halt
+	call EXTERNAL_PARTS_ADDR + 3
+	halt
+	ld hl, EXTERNAL_PARTS_ADDR + 12
+	call interrStart
+	halt
+	halt
+	pop bc : djnz 1b
+
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+
+	// fade out	
+	ld b, 10
+1	push bc
+	call interrStop
+	halt
+	call EXTERNAL_PARTS_ADDR + 6
+	halt
+	ld hl, EXTERNAL_PARTS_ADDR + 12
+	call interrStart
+	halt
+	pop bc : djnz 1b
+
+	ret	
+
 ; Print one attribute char with ROM font
 ; DE - Attributes address
 ; A  - char
