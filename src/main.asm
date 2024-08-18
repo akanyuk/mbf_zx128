@@ -24,6 +24,11 @@ page0s	module lib
 	call musicStart
 	call partMain
 
+1	ld hl, (INTS_COUNTER)
+	ld de, 5436
+	sbc hl, de 
+	jr nz, 1b
+
 	di
 	ld a, P_TRACK : call lib.SetPage
 	call PT3PLAY + 8
@@ -117,6 +122,7 @@ page3s
 	module tv
 start	include "part.tv/part.tv.asm"
 	endmodule
+PART_12ANM_PCK	incbin "build/part.12anim.bin.zx0"	
 page3e	display /d, '[page 3] free: ', 65536 - $, ' (', $, ')'
 
 	define _page4 : page 4 : org #c000

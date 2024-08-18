@@ -215,11 +215,42 @@
 	ld hl, zapili4.start
 	call interrStart
 
-.skip
-
 	ld b, 100 : call rndNoiseIterA
 	call interrStop
 
+	; Part 12anim depacking
+	ld a, 3 : call lib.SetPage
+	ld hl, PART_12ANM_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+
+	ld hl, EXTERNAL_PARTS_ADDR + 3
+	call interrStart
+	call part12AnmFlow
+
+	ld b, 50 : halt : djnz $-1
+
+	ld a, 1 : call lib.SetPage
+
+	ld b, 100
+1	push bc
+	halt
+	call zapili4.start
+	pop bc
+	djnz 1b
+
+	ld b, 100
+1	push bc
+	halt
+	call zapili4.start
+	call randomNoise
+	call randomNoise
+	call randomNoise		
+	pop bc
+	djnz 1b
+
+	call interrStop
+	
 	; Part chunks1 depacking
 	ld a, 4 : call lib.SetPage
 	ld hl, PART_CHNK1_PCK
@@ -227,11 +258,8 @@
 	call lib.Depack	
 	
 	call partChunks1Main
-
 	xor a : call lib.SetScreen
-
-	jr $
-
+.skip	
 	ret
 	
 	include "common.asm"

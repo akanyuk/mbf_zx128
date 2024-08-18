@@ -190,6 +190,39 @@ partChunks1Main
 
 	ret	
 
+part12AnmFlow	define PART_12ANM_PAUSE_IN 8
+	ld a, 0 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 1 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 4 : call EXTERNAL_PARTS_ADDR
+
+	ld b, 25 : halt : djnz $-1
+
+	ld a, 2 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 5 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 8 : call EXTERNAL_PARTS_ADDR
+	
+	ld b, 25 : halt : djnz $-1
+
+	ld a, 3 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 6 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 9 : call EXTERNAL_PARTS_ADDR
+
+	ld b, 25 : halt : djnz $-1
+
+	ld a, 7 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 10 : call EXTERNAL_PARTS_ADDR
+	ld b, PART_12ANM_PAUSE_IN : halt : djnz $-1
+	ld a, 11 : call EXTERNAL_PARTS_ADDR
+
+	ret
+
 ; Print one attribute char with ROM font
 ; DE - Attributes address
 ; A  - char

@@ -78,6 +78,11 @@
                         "label": "part.chunks1",
                         "command": "make clean-part.chunks1 build/part.chunks1.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.12anim",
+                        "command": "make clean-part.12anim build/part.12anim.bin",
+                        "group": "build"
                 }
         ]
 }
