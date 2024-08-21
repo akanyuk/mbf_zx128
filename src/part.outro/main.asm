@@ -1,6 +1,6 @@
 	device zxspectrum128
 
-	; define _DEBUG_ 
+	define _DEBUG_ 
 	define _MUSIC_
 	; define _NOPAUSE_
 
@@ -13,7 +13,7 @@ start	ei : ld sp, start
 PART_START	include "part.outro.asm"
 	
 	display /d, 'Part length: ', $ - PART_START
-	display 'Part ended at: ', $
+	display /d, 'Part free: ', 65536 - $, ' (', $, ')'
 
 	; build
 	if (_ERRORS == 0 && _WARNINGS == 0)

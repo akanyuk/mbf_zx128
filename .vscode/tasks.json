@@ -55,6 +55,11 @@
                         "group": "build"
                 },
                 {
+                        "label": "part.outro-a2",
+                        "command": "make clean-part.outro-a2 build/part.outro-a2.bin",
+                        "group": "build"
+                },
+                {
                         "label": "part.horch",
                         "command": "make clean-part.horch build/part.horch.bin",
                         "group": "build"

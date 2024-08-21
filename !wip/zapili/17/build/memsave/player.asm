@@ -1,8 +1,8 @@
 play	; DE = starting screen address (#4000, #c000, etc...)
-        ld	hl, FRAME_0000
+        ld	hl,FRAME_0000
         ld	a,h : sub high FRAME_END : or l : sub low FRAME_END
         jr	nz,1f
-        ld	hl, FRAME_0000
+        ld	hl,FRAME_0000
 1	ld	c,(hl)  :  inc hl	; Screen shift
         ld	b,(hl)  :  inc hl
         ex	de,hl
@@ -53,10 +53,4 @@ FRAME_000c	include "res/000c.asm"
 FRAME_000d	include "res/000d.asm"
 FRAME_000e	include "res/000e.asm"
 FRAME_000f	include "res/000f.asm"
-FRAME_0010	include "res/0010.asm"
-FRAME_0011	include "res/0011.asm"
-FRAME_0012	include "res/0012.asm"
-FRAME_0013	include "res/0013.asm"
-FRAME_0014	include "res/0014.asm"
-FRAME_0015	include "res/0015.asm"
 FRAME_END

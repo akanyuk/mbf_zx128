@@ -9,35 +9,60 @@
 
 	ld a, %01000111 : call setScreenAttr
 
-	ld hl, a1interr
+	ld b, 150 : halt : djnz $-1
+
+	ld hl, partA1.start
 	call interrStart
-
-	ifndef _NOPAUSE_ : ld b, 150 : halt : djnz $-1 : endif
-
-	call clearScreen
 	call printText1
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
 
+	ld b, 200 : halt : djnz $-1
+	call interrStop
 	call clearScreen
+	ld b, 50 : halt : djnz $-1
+
+	ld hl, partA1.start
+	call interrStart
 	call printText2
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
 
+	ld b, 200 : halt : djnz $-1
+	call interrStop
 	call clearScreen
+	ld b, 50 : halt : djnz $-1
+
+	ld hl, partA1.start
+	call interrStart
 	call printText3
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
 
+	ld b, 200 : halt : djnz $-1
+	call interrStop
 	call clearScreen
+	ld b, 50 : halt : djnz $-1
+
+	ld hl, partA1.start
+	call interrStart
 	call printText4
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
-
+	
+	ld b, 200 : halt : djnz $-1
+	call interrStop
 	call clearScreen
+	ld b, 50 : halt : djnz $-1
+
+	ld hl, partA1.start
+	call interrStart
+	call printText6
+
+	ld b, 200 : halt : djnz $-1
+	call interrStop
+	call clearScreen
+	ld b, 50 : halt : djnz $-1
+
+	ld hl, partA2.start
+	call interrStart
 	call printText5
 
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
-	ifndef _NOPAUSE_ : ld b, 250 : halt : djnz $-1 : endif
-	ifndef _NOPAUSE_ : ld b, 20 : halt : djnz $-1 : endif
+	ld b, 250 : halt : djnz $-1
+	ld b, 250 : halt : djnz $-1
+	ld b, 20 : halt : djnz $-1
 
 	ifdef _MUSIC_
 	xor a : ld (MUSIC_STATE), a
@@ -100,8 +125,11 @@ PT3PLAY	include "lib/PTxPlay.asm"
 	incbin "res/t3.pt3"
 	endif
 
-PART_A1	include "src/part.outro-a1/part.outro-a1.asm"
+	module partA1
+start	include "src/part.outro-a1/part.outro-a1.asm"
+	endmodule
 
-a1interr	ld a, 0 : inc a : and 3 : ld ($-4), a
-	or a : ret nz
-	jp PART_A1
+	module partA2
+start	include "src/part.outro-a2/part.outro-a2.asm"
+	endmodule
+
