@@ -103,6 +103,11 @@
                         "label": "part.4slow",
                         "command": "make clean-part.4slow build/part.4slow.bin",
                         "group": "build"
+                },
+                {
+                        "label": "part.anim2",
+                        "command": "make clean-part.anim2 build/part.anim2.bin",
+                        "group": "build"
                 }
         ]
 }

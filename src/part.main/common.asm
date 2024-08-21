@@ -243,28 +243,24 @@ catText	ld b, 17
 	ret
 CAT_FINE_TEXT	db "A CAT IS FINE TOO"
 
-part4SlowFlow
+part4SlowFlow1
 	ld de, #4800
 	call part4slowIterr
-
-	ld de, #5010
-	call part4slowIterr
-
-	ld de, #4000
-	call part4slowIterr
-
-	ld de, #4010
-	call part4slowIterr
-
-	ld de, #5000
-	call part4slowIterr
-
 	ld de, #4810 
 	call part4slowIterr
-
 	ret
 
-part4slowIterr	ld b, 48
+part4SlowFlow2
+	call part4slowIterr
+	ld de, #4000
+	call part4slowIterr
+	ld de, #5000
+	call part4slowIterr
+	ld de, #4010 
+	call part4slowIterr
+	ret
+
+part4slowIterr	ld b, 32
 1	push bc
 	push de
 	halt

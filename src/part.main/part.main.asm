@@ -1,7 +1,7 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 	xor a : out (#fe), a
 
-	; jp .skip
+	jp .skip
 
 	; zapili4 here
 	ld a, 1 : call lib.SetPage
@@ -329,10 +329,11 @@
 	pop bc
 	djnz 1b
 
+.skip
 	call clearScreen
 	ld a, 7 : call lib.SetScreenAttr
-.skip
-	; Part chunks1 depacking
+
+	; Part `4slow` depacking
 	ld a, 6 : call lib.SetPage
 	ld hl, PART_4SLOW_PCK
 	ld de, EXTERNAL_PARTS_ADDR
@@ -343,7 +344,43 @@
 	ld b, 50 : halt : djnz $-1
 
 	ld a, 1 : call lib.SetPage
-	call part4SlowFlow
+	call part4SlowFlow1
+
+	; Part `anima2` depacking
+	ld a, 4 : call lib.SetPage
+	ld hl, PART_ANM2_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+
+ 	ld b, 30
+1	push bc
+ 	halt
+ 	halt	
+ 	call EXTERNAL_PARTS_ADDR
+ 	pop bc
+ 	djnz 1b
+
+	; Part `4slow` depacking again
+	ld a, 6 : call lib.SetPage
+	ld hl, PART_4SLOW_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+
+	ld a, 1 : call lib.SetPage
+	call part4SlowFlow2
+
+	; Part `anima2` depacking again
+	ld a, 4 : call lib.SetPage
+	ld hl, PART_ANM2_PCK
+	ld de, EXTERNAL_PARTS_ADDR
+	call lib.Depack	
+
+ 	ld b, 30
+1	push bc
+ 	halt
+ 	call EXTERNAL_PARTS_ADDR
+ 	pop bc
+ 	djnz 1b
 
 	ld b, 64 : halt : djnz $-1
 	call interrStop

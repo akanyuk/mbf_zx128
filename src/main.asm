@@ -135,6 +135,7 @@ page3e	display /d, '[page 3] free: ', 65536 - $, ' (', $, ')'
 	define _page4 : page 4 : org #c000
 page4s	
 PART_CHNK1_PCK	incbin "build/part.chunks1.bin.zx0"
+PART_ANM2_PCK	incbin "build/part.anim2.bin.zx0"
 
 page4e	display /d, '[page 4] free: ', 65536 - $, ' (', $, ')'
 
