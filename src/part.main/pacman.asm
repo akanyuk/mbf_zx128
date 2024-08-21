@@ -92,23 +92,23 @@ main	ex af, af'
 
 	ret
 
-	define c1 %01000111
-	define c2 %01011011
+	define color1 %01000111
+	define color2 %01011011
 
-SPRITE1	db c1, c1, c1, c2, c2, c2, c2, c1, c1, c1
-	db c1, c1, c2, c2, c2, c2, c2, c2, c1, c1
-	db c1, c2, c2, c1, c2, c2, c2, c2, c2, c1
-	db c1, c2, c2, c2, c2, c2, c2, c2, c2, c1
-	db c1, c2, c2, c2, c2, c2, c2, c2, c2, c1
-	db c1, c1, c1, c1, c1, c2, c2, c2, c2, c1
-	db c1, c1, c2, c2, c2, c2, c2, c2, c1, c1
-	db c1, c1, c1, c2, c2, c2, c2, c1, c1, c1
+SPRITE1	db color1, color1, color1, color2, color2, color2, color2, color1, color1, color1
+	db color1, color1, color2, color2, color2, color2, color2, color2, color1, color1
+	db color1, color2, color2, color1, color2, color2, color2, color2, color2, color1
+	db color1, color2, color2, color2, color2, color2, color2, color2, color2, color1
+	db color1, color2, color2, color2, color2, color2, color2, color2, color2, color1
+	db color1, color1, color1, color1, color1, color2, color2, color2, color2, color1
+	db color1, color1, color2, color2, color2, color2, color2, color2, color1, color1
+	db color1, color1, color1, color2, color2, color2, color2, color1, color1, color1
 
-SPRITE2	db c1, c1, c1, c2, c2, c2, c2, c1, c1, c1
-	db c1, c1, c2, c2, c2, c2, c2, c2, c1, c1
-	db c1, c2, c2, c1, c2, c2, c2, c2, c2, c1
-	db c1, c2, c2, c2, c2, c2, c2, c2, c2, c1
-	db c1, c2, c2, c2, c2, c2, c2, c2, c2, c1
-	db c1, c1, c1, c1, c1, c2, c2, c2, c2, c1
-	db c1, c1, c1, c1, c1, c2, c2, c2, c1, c1
-	db c1, c1, c1, c2, c2, c2, c2, c1, c1, c1	
+SPRITE2	db color1, color1, color1, color2, color2, color2, color2, color1, color1, color1
+	db color1, color1, color2, color2, color2, color2, color2, color2, color1, color1
+	db color1, color2, color2, color1, color2, color2, color2, color2, color2, color1
+	db color1, color2, color2, color2, color2, color2, color2, color2, color2, color1
+	db color1, color2, color2, color2, color2, color2, color2, color2, color2, color1
+	db color1, color1, color1, color1, color1, color2, color2, color2, color2, color1
+	db color1, color1, color1, color1, color1, color2, color2, color2, color1, color1
+	db color1, color1, color1, color2, color2, color2, color2, color1, color1, color1	

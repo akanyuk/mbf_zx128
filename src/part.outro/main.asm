@@ -1,12 +1,12 @@
 	device zxspectrum128
 
-	define _DEBUG_ 
+	; define _DEBUG_ 
 	define _MUSIC_
 	; define _NOPAUSE_
 
 	org #6000
 start	ei : ld sp, start
-	ld a, 1 : out (#fe), a
+	ld a, 0 : out (#fe), a
 
 	jp PART_START
 

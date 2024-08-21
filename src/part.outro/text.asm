@@ -95,17 +95,17 @@ printText6	ld hl, TEXT6_1
 	ifndef _NOPAUSE_ : ld b, _PRN_TXT_LINE_PAUESE_ : halt : djnz $-1 : endif
 
 	ld hl, TEXT6_2
-	ld de, #486b 
+	ld de, #4869
 	call PrintHuman
 	ifndef _NOPAUSE_ : ld b, _PRN_TXT_LINE_PAUESE_ : halt : djnz $-1 : endif
 
 	ld hl, TEXT6_3
-	ld de, #488d 
+	ld de, #488b
 	call PrintHuman
 	ifndef _NOPAUSE_ : ld b, _PRN_TXT_LINE_PAUESE_ : halt : djnz $-1 : endif
 
 	ld hl, TEXT6_4
-	ld de, #48a8 
+	ld de, #48ad 
 	jp PrintHuman
 
 TEXT6_1	db "THIS DEMO HAS", 0
@@ -114,10 +114,16 @@ TEXT6_3	db "BUT...", 0
 TEXT6_4	db "NEVERMIND", 0
 
 printText5	ld hl, TEXT5_1
-	ld de, #4849 
+	ld de, #486c
+	call PrintHuman
+	ifndef _NOPAUSE_ : ld b, _PRN_TXT_LINE_PAUESE_ : halt : djnz $-1 : endif
+
+	ld hl, TEXT5_2
+	ld de, #488e
 	jp PrintHuman
 
-TEXT5_1	db "HAVE A NICE DAY", 0
+TEXT5_1	db "HAVE A", 0
+TEXT5_2	db "NICE DAY", 0
 
 ; Print zero ended string with font 8х8; human speed;
 ; HL - Text pointer

@@ -9,13 +9,19 @@
 
 	ld a, %01000111 : call setScreenAttr
 
-	ld b, 150 : halt : djnz $-1
+	; jp .skip
 
+	ifndef _NOPAUSE_
+	ld hl, (INTS_COUNTER) : ld de, 256 : sbc hl, de : : jr c, $-8
+	endif
+
+	call clearScreen
+	
 	ld hl, partA1.start
 	call interrStart
 	call printText1
 
-	ld b, 200 : halt : djnz $-1
+	ld b, 150 : halt : djnz $-1
 	call interrStop
 	call clearScreen
 	ld b, 50 : halt : djnz $-1
@@ -24,7 +30,7 @@
 	call interrStart
 	call printText2
 
-	ld b, 200 : halt : djnz $-1
+	ld b, 150 : halt : djnz $-1
 	call interrStop
 	call clearScreen
 	ld b, 50 : halt : djnz $-1
@@ -33,7 +39,7 @@
 	call interrStart
 	call printText3
 
-	ld b, 200 : halt : djnz $-1
+	ld b, 150 : halt : djnz $-1
 	call interrStop
 	call clearScreen
 	ld b, 50 : halt : djnz $-1
@@ -42,34 +48,29 @@
 	call interrStart
 	call printText4
 	
-	ld b, 200 : halt : djnz $-1
+	ld hl, (INTS_COUNTER) : ld de, 2048 + 70 : sbc hl, de : : jr c, $-8
 	call interrStop
 	call clearScreen
-	ld b, 50 : halt : djnz $-1
-
 	ld hl, partA1.start
 	call interrStart
 	call printText6
 
-	ld b, 200 : halt : djnz $-1
+	ld hl, (INTS_COUNTER) : ld de, 2560 - 1 : sbc hl, de : : jr c, $-8
 	call interrStop
 	call clearScreen
-	ld b, 50 : halt : djnz $-1
+
+.skip
 
 	ld hl, partA2.start
 	call interrStart
 	call printText5
 
-	ld b, 250 : halt : djnz $-1
-	ld b, 250 : halt : djnz $-1
-	ld b, 20 : halt : djnz $-1
+	ld hl, (INTS_COUNTER) : ld de, 3225 : sbc hl, de : : jr c, $-8
 
 	ifdef _MUSIC_
 	xor a : ld (MUSIC_STATE), a
 	call PT3PLAY + 8	
 	endif
-
-	call interrStop
 
 	jr $
 
@@ -111,6 +112,9 @@ MUSIC_STATE	equ $+1
 
 	call interrCurrent
 
+INTS_COUNTER	equ $+1
+	ld hl, #0000 : inc hl : ld ($-3), hl
+
 	ifdef _DEBUG_ : xor a : out (#fe), a : endif ; debug
 	pop iy,ix,hl,de,bc,af
 	exx : ex af, af'
@@ -132,4 +136,3 @@ start	include "src/part.outro-a1/part.outro-a1.asm"
 	module partA2
 start	include "src/part.outro-a2/part.outro-a2.asm"
 	endmodule
-
