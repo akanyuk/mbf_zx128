@@ -1,0 +1,9 @@
+My three best friends convertor, parser and generator always come with me
+-------------------------------------------------------------------------
+
+ZX Spectrum 128 (Pentagon mode) demo
+
+SFX, GFX, Visuals: AI
+Code: nyuk
+
+Released at Chaos Constructions'2024 demo party
