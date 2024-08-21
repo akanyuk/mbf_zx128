@@ -103,6 +103,15 @@ partBoxText
 	jp lib.PrintText
 PART_BOX_TEXT	db "   WE ALWAYS PUSHING THE BOX    ", 0
 
+partHousesIteration
+	ld b, 16
+1	push bc
+	call EXTERNAL_PARTS_ADDR
+	pop bc
+	halt
+	djnz 1b
+	ret
+
 partHousesDoubleIteration	
 	ld b, 16
 1	push bc
@@ -135,8 +144,8 @@ partTV	ld a, 3 : call lib.SetPage
 	ret
 
 rndNoiseTV
-	ld b, 25 : halt : djnz $-1
-	ld b, 25
+	ld b, 10 : halt : djnz $-1
+	ld b, 40
 1	push bc
 	call randomNoise
 	call randomNoise
@@ -158,11 +167,11 @@ partChunks1Main
 1	push bc
 	call interrStop
 	halt
+	halt
 	call EXTERNAL_PARTS_ADDR + 3
 	halt
 	ld hl, EXTERNAL_PARTS_ADDR + 12
 	call interrStart
-	halt
 	halt
 	pop bc : djnz 1b
 
@@ -254,13 +263,15 @@ part4SlowFlow2
 	call part4slowIterr
 	ld de, #4000
 	call part4slowIterr
-	ld de, #5000
+	ld de, #5010 
 	call part4slowIterr
 	ld de, #4010 
 	call part4slowIterr
+	ld de, #5000 
+	call part4slowIterr
 	ret
 
-part4slowIterr	ld b, 32
+part4slowIterr	ld b, 16
 1	push bc
 	push de
 	halt
@@ -302,6 +313,19 @@ PrintCharAttr 	push bc
 	inc de
 	djnz 1b
 
+	ret 
+
+; Fill 8x8 attribute by color
+; HL - Attributes address
+; A  - attribute value
+FillAttr8x8 	ld de, 24
+	ld b, 8
+1	dup 8
+	ld (hl), a
+	inc hl
+	edup
+	add hl, de
+	djnz 1b
 	ret 
 
 downDE8	ld a, d : add 8 : ld d, a : ld a,e : sub #e0 : ld e,a : sbc a,a : and #f8 : add a,d : ld d,a : ret

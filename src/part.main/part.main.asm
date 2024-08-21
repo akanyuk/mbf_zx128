@@ -1,7 +1,7 @@
 	ld a, %01000111 : call lib.SetScreenAttr
 	xor a : out (#fe), a
 
-	jp .skip
+	; jp .skip
 
 	; zapili4 here
 	ld a, 1 : call lib.SetPage
@@ -178,7 +178,7 @@
 	ld hl, randomNoise
 	call interrStart
 
-	ifndef _NOPAUSE_ : ld b, 50 : halt : djnz $-1 : endif
+	ld b, 50 : halt : djnz $-1
 
 	ld a, 7 : call lib.SetScreenAttr
 	ld b, 50 : call rndNoiseIterA
@@ -197,37 +197,33 @@
 	call partHousesDoubleIteration
 	ld b, 30 : halt : djnz $-1
 
-	call partHousesDoubleIteration
-	ld b, 30 : halt : djnz $-1
-
 	ld a, 1 : call lib.SetPage
 	ld hl, zapili4.start
 	call interrStart
 
-	ld b, 30 : halt : djnz $-1
-	
 	ld a, "1"
 1	push af
-
-	ld b, 5 : halt : djnz $-1
 
 	ex af, af'
 	ld a, %01000111 : call lib.SetScreenAttr
 	ex af, af'
 
-	ld b, 5 : halt : djnz $-1
-
 	ld de, #5800
 	ld c, %00111000
 	call PrintCharAttr
 
-	call partHousesDoubleIteration
+	call partHousesIteration
+
+	ld hl, #5800
+	ld a, 0
+	call FillAttr8x8
+
+	call partHousesIteration
+	ld b, 10 : halt : djnz $-1
 
 	pop af
 	inc a : cp "8" : jr nz, 1b
 
-	ld b, 50 : halt : djnz $-1
-
 	ld a, %01000111 : call lib.SetScreenAttr
 	
 	ld a, "1"
@@ -236,24 +232,23 @@
 	call PrintCharAttr
 
 	call partHousesDoubleIteration
-	ld b, 30 : halt : djnz $-1
 
 	ld a, %01000111 : call lib.SetScreenAttr
 
-	ld b, 100 : call rndNoiseIterA
+	ld b, 75 : call rndNoiseIterA
 
 	call interrStop
 	
 	call partTV
 
-	ld b, 50 : halt : djnz $-1
+	ld b, 35 : halt : djnz $-1
 	ld a, %01000111 : call lib.SetScreenAttr
 
 	ld a, 1 : call lib.SetPage
 	ld hl, zapili4.start
 	call interrStart
 
-	ld b, 100 : call rndNoiseIterA
+	ld b, 128 : call rndNoiseIterA
 	call interrStop
 
 	; Part 12anim depacking
@@ -341,7 +336,6 @@
 	
 	ld hl, randomNoiseA
 	call interrStart
-	ld b, 50 : halt : djnz $-1
 
 	ld a, 1 : call lib.SetPage
 	call part4SlowFlow1
@@ -352,6 +346,7 @@
 	ld de, EXTERNAL_PARTS_ADDR
 	call lib.Depack	
 
+	ld a, #47 : call lib.SetScreenAttr
  	ld b, 30
 1	push bc
  	halt
@@ -359,6 +354,7 @@
  	call EXTERNAL_PARTS_ADDR
  	pop bc
  	djnz 1b
+	ld a, #07 : call lib.SetScreenAttr
 
 	; Part `4slow` depacking again
 	ld a, 6 : call lib.SetPage
@@ -375,16 +371,21 @@
 	ld de, EXTERNAL_PARTS_ADDR
 	call lib.Depack	
 
+	ld a, #47 : call lib.SetScreenAttr
  	ld b, 30
 1	push bc
  	halt
  	call EXTERNAL_PARTS_ADDR
  	pop bc
  	djnz 1b
+	ld a, #07 : call lib.SetScreenAttr
 
 	ld b, 64 : halt : djnz $-1
 	call interrStop
 	
+	call clearScreen
+	ld a, 7 : call lib.SetScreenAttr
+
 	ret
 	
 	include "common.asm"
