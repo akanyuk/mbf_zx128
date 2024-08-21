@@ -10,7 +10,7 @@ NAME_SUFFIX = $(shell date +%Y%m%d)-$(shell git log --format="%h" -n 1)
 
 all: build
 
-build: build/part.intro.bin $(PARTS:%=build/%.bin.zx0) ## Default: build project
+build: build/part.intro.bin build/part.outro.bin $(PARTS:%=build/%.bin.zx0) ## Default: build project
 	@printf "\033[32mBuilding '$(PROJECT_NAME)'\033[0m\n"
 
 	rm -f build/$(PROJECT_NAME)*.sna

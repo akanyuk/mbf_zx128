@@ -27,7 +27,7 @@ page0s	module lib
 1	ld hl, (INTS_COUNTER)
 	ld de, 5436
 	sbc hl, de 
-	jr nz, 1b
+	jr c, 1b
 
 	di
 	ld a, P_TRACK : call lib.SetPage

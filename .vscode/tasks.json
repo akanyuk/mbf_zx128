@@ -34,10 +34,7 @@
                 {
                         "label": "build all",
                         "command": "make",
-                        "group": {
-                                "kind": "build",
-                                "isDefault": true
-                        }
+                        "group": "build"
                 },
                 {
                         "label": "part.intro",
@@ -47,6 +44,14 @@
                 {
                         "label": "part.outro",
                         "command": "make clean-part.outro build/part.outro.bin",
+                        "group": {
+                                "kind": "build",
+                                "isDefault": true
+                        }
+                },
+                {
+                        "label": "part.outro-a1",
+                        "command": "make clean-part.outro-a1 build/part.outro-a1.bin",
                         "group": "build"
                 },
                 {

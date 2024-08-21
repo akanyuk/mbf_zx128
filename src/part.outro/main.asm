@@ -11,7 +11,7 @@ start	ei : ld sp, start
 	jp PART_START
 
 PART_START	include "part.outro.asm"
-		
+	
 	display /d, 'Part length: ', $ - PART_START
 	display 'Part ended at: ', $
 
