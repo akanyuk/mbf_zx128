@@ -282,8 +282,6 @@
 	pop bc
 	djnz 1b
 
-	call interrStop
-
 	; Part chunks1 depacking
 	ld a, 4 : call lib.SetPage
 	ld hl, PART_CHNK1_PCK
@@ -347,7 +345,7 @@
 	call lib.Depack	
 
 	ld a, #47 : call lib.SetScreenAttr
- 	ld b, 30
+ 	ld b, 40
 1	push bc
  	halt
  	halt	
@@ -372,7 +370,7 @@
 	call lib.Depack	
 
 	ld a, #47 : call lib.SetScreenAttr
- 	ld b, 30
+ 	ld b, 50
 1	push bc
  	halt
  	call EXTERNAL_PARTS_ADDR

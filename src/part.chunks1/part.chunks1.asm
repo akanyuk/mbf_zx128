@@ -18,9 +18,9 @@
 	call chnk_main.PLAY
 	jp lib.SwapScreen
 
-init	ld a, COLOR1_DEFAULT : call lib.SetScreenAttr
+init	ld a, COLOR1_DEFAULT : call setScreenAttrA
 	call lib.SwapScreen
-	ld a, COLOR2_DEFAULT : call lib.SetScreenAttr
+	ld a, COLOR2_DEFAULT : call setScreenAttrA
 
 	; player initalization
 	ld a, %11000000		; screen in #c000 / animation bright = 0
@@ -44,6 +44,7 @@ blink	ld a, #42 : ld (COLOR1), a
 COLOR1	db COLOR1_DEFAULT
 COLOR2	db COLOR2_DEFAULT
 
+setScreenAttrA	ld hl, #d800 : ld de, #d801 : ld bc, #02ff : ld (hl), a : ldir : ret
 	; таблица яркостей
 BRIGHT_TABLE	include "lib/chunks.bright.table.asm"
 		

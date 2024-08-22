@@ -156,46 +156,36 @@ rndNoiseTV
 	ret
 
 partChunks1Main
-	call clearScreen
 	call EXTERNAL_PARTS_ADDR
 
-	ld hl, EXTERNAL_PARTS_ADDR + 12
-	call interrStart
-
-	// fade in	
+	// fade in on black screen because crused on ZX Evo
 	ld b, 14
 1	push bc
-	call interrStop
-	halt
-	halt
 	call EXTERNAL_PARTS_ADDR + 3
-	halt
-	ld hl, EXTERNAL_PARTS_ADDR + 12
-	call interrStart
-	halt
 	pop bc : djnz 1b
 
-	ld b, 25 : halt : djnz $-1
-	call EXTERNAL_PARTS_ADDR + 9
-	ld b, 25 : halt : djnz $-1
-	call EXTERNAL_PARTS_ADDR + 9
-	ld b, 25 : halt : djnz $-1
-	call EXTERNAL_PARTS_ADDR + 9
-	ld b, 25 : halt : djnz $-1
-	call EXTERNAL_PARTS_ADDR + 9
-	ld b, 25 : halt : djnz $-1
-
-	// fade out	
-	ld b, 10
-1	push bc
 	call interrStop
-	halt
-	call EXTERNAL_PARTS_ADDR + 6
-	halt
+	call clearScreen
+
+	ld a, 7 : call lib.SetPage
+	ld hl, #c000 : ld de, #c001 : ld bc, #1aff : ld (hl), 0 : ldir
+	
 	ld hl, EXTERNAL_PARTS_ADDR + 12
 	call interrStart
-	halt
-	pop bc : djnz 1b
+
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
+	call EXTERNAL_PARTS_ADDR + 9
+	ld b, 25 : halt : djnz $-1
 
 	call interrStop
 	ret	
